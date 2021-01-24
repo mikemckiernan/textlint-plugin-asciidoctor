@@ -257,6 +257,24 @@ class Converter {
 
   convertTable(elem, lineno) {
     let children = [];
+    // This function is missing the $rows().$head() row.
+    if (typeof elem.title === 'string') {
+      // FIXME - 3
+      const raw = elem.title;
+      const loc = this.findLocation([raw], { min: lineno.min - 3, max: lineno.min, type: "Header" });
+      const range = this.locationToRange(loc);
+      children.push(
+        {
+          type: "Header",
+          depth: 0,
+          children: [{ type: "Str", value: raw, loc, range, raw }],
+          loc,
+          range,
+          raw
+        }
+      )
+    }
+
     for (let row of elem.$rows().$body()) {
       children = [
         ...children,
