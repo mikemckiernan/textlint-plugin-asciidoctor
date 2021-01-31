@@ -502,6 +502,46 @@ example inline image followed by an example block image:",
         Object {
           "children": Array [
             Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 17,
+                  "line": 50,
+                },
+                "start": Object {
+                  "column": 1,
+                  "line": 50,
+                },
+              },
+              "range": Array [
+                1405,
+                1421,
+              ],
+              "raw": "An example table",
+              "type": "Str",
+              "value": "An example table",
+            },
+          ],
+          "depth": 0,
+          "loc": Object {
+            "end": Object {
+              "column": 17,
+              "line": 50,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 50,
+            },
+          },
+          "range": Array [
+            1405,
+            1421,
+          ],
+          "raw": "An example table",
+          "type": "Header",
+        },
+        Object {
+          "children": Array [
+            Object {
               "children": Array [
                 Object {
                   "loc": Object {
@@ -702,12 +742,12 @@ example inline image followed by an example block image:",
           "line": 55,
         },
         "start": Object {
-          "column": 2,
-          "line": 54,
+          "column": 1,
+          "line": 50,
         },
       },
       "range": Array [
-        1535,
+        1405,
         1623,
       ],
       "raw": "",
