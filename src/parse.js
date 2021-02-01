@@ -275,20 +275,37 @@ class Converter {
       )
     }
 
+    const attrs = this.getTableAttributes(elem, lineno)
+    if (typeof attrs === "object") {
+      children.push(attrs[0])
+    }
+
+    // Check for a header option.
+    for (let header of elem.$rows().$head()) {
+      children = [
+        ...children,
+        ...this.convertTableRow(header, { ...lineno, update: false })
+      ];
+    }
+
     for (let row of elem.$rows().$body()) {
       children = [
         ...children,
         ...this.convertTableRow(row, { ...lineno, update: false })
       ];
     }
+
     if (children.length === 0) {
       return [];
     }
+
     const loc = {
       start: children[0].loc.start,
       end: children[children.length - 1].loc.end
     };
+
     const range = this.locationToRange(loc);
+
     return [
       {
         type: "Table",
@@ -388,6 +405,57 @@ class Converter {
       loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 0 } },
       raw: ""
     };
+  }
+
+  /**
+   * Returns the cols and options table attributes.
+   * If tablepcwidth is not 100, then it is returned too.
+   * @param {*} node 
+   * @param lineno -- this is the position of the table
+   */
+  getTableAttributes(node, lineno) {
+    const attributes = typeof node.getAttributes === "function" ? node.getAttributes() : {};
+    if (typeof attributes !== "object") {
+      return {}
+    }
+
+    for (const key in attributes) {
+      if (
+        ["attribute_entries", "colcount", "rowcount", "style"].includes(key)
+        || attributes[key] === ''
+        || "tablepcwidth" === key && 100 === attributes[key]
+      ) {
+        delete attributes[key]
+        continue
+      }
+    }
+
+    let attrs = ""
+    let count = Object.keys(attributes).length
+
+    for (let i = 0; i < count; ++i) {
+      let key = Object.keys(attributes)[i]
+
+      attrs += key + "=\"" + attributes[key] + "\""
+      if (i < count - 1) {
+        attrs += ","
+      }
+    }
+    attrs = "[" + attrs + "]"
+
+    const loc = this.findLocation(["["], { min: lineno.min - 3, max: lineno.min, type: "Attributes" });
+    loc.end.column = attrs.length
+    const range = this.locationToRange(loc);
+
+    return [
+      {
+        type: "Attributes",
+        children: [{ type: "Str", value: attrs }],
+        loc,
+        range,
+        raw: attrs
+      }
+    ]
   }
 }
 
