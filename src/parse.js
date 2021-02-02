@@ -28,7 +28,7 @@ class Converter {
   convertElement(elem, lineno) {
     if (elem.context === "document") {
       return this.convertDocument(elem, lineno);
-    } else if (elem.context === "paragraph" || elem.context === "literal") {
+    } else if (["paragraph", "literal"].includes(elem.context)) {
       return this.convertParagraph(elem, lineno);
     } else if (elem.context === "ulist" || elem.context === "olist") {
       return this.convertList(elem, lineno);
@@ -44,7 +44,9 @@ class Converter {
       return this.convertSection(elem, lineno);
     } else if (elem.context === "table") {
       return this.convertTable(elem, lineno);
-    } else if (elem.context === "admonition" || elem.context === "example") {
+    } else if (elem.context === "preamble") {
+      return this.convertElementList(elem.getBlocks(), lineno)
+    } else if (["admonition", "example"].includes(elem.context)) {
       return this.convertElementList(elem.$blocks(), {
         ...lineno,
         update: false
@@ -261,7 +263,7 @@ class Converter {
     if (typeof elem.title === 'string') {
       // FIXME - 3
       const raw = elem.title;
-      const loc = this.findLocation([raw], { min: lineno.min - 3, max: lineno.min, type: "Header" });
+      const loc = this.findLocation([raw], { min: Math.max(1, lineno.min - 3), max: lineno.min, type: "Header" });
       const range = this.locationToRange(loc);
       children.push(
         {
@@ -276,8 +278,8 @@ class Converter {
     }
 
     const attrs = this.getTableAttributes(elem, lineno)
-    if (typeof attrs === "object") {
-      children.push(attrs[0])
+    if (attrs.length > 0) {
+      children.push(attrs[0]) // FIXME: Return the correct type.
     }
 
     // Check for a header option.
@@ -410,20 +412,19 @@ class Converter {
   /**
    * Returns the cols and options table attributes.
    * If tablepcwidth is not 100, then it is returned too.
-   * @param {*} node 
+   * @param {*} node
    * @param lineno -- this is the position of the table
    */
   getTableAttributes(node, lineno) {
     const attributes = typeof node.getAttributes === "function" ? node.getAttributes() : {};
     if (typeof attributes !== "object") {
-      return {}
+      return []
     }
 
     for (const key in attributes) {
       if (
-        ["attribute_entries", "colcount", "rowcount", "style"].includes(key)
+        ["attribute_entries", "colcount", "rowcount", "style", "tablepcwidth"].includes(key)
         || attributes[key] === ''
-        || "tablepcwidth" === key && 100 === attributes[key]
       ) {
         delete attributes[key]
         continue
@@ -443,7 +444,10 @@ class Converter {
     }
     attrs = "[" + attrs + "]"
 
-    const loc = this.findLocation(["["], { min: lineno.min - 3, max: lineno.min, type: "Attributes" });
+    const loc = this.findLocation(["["], { min: Math.max(1, lineno.min - 3), max: lineno.min, type: "Attributes" });
+    if (!loc) {
+      return [];
+    }
     loc.end.column = attrs.length
     const range = this.locationToRange(loc);
 

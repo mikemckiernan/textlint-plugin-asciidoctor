@@ -152,6 +152,48 @@ Object {
         Object {
           "loc": Object {
             "end": Object {
+              "column": 67,
+              "line": 10,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 9,
+            },
+          },
+          "range": Array [
+            193,
+            329,
+          ],
+          "raw": "This is the optional preamble (an untitled section body). Useful for
+writing simple sectionless documents consisting only of a preamble.",
+          "type": "Str",
+          "value": "This is the optional preamble (an untitled section body). Useful for
+writing simple sectionless documents consisting only of a preamble.",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 67,
+          "line": 10,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 9,
+        },
+      },
+      "range": Array [
+        193,
+        329,
+      ],
+      "raw": "This is the optional preamble (an untitled section body). Useful for
+writing simple sectionless documents consisting only of a preamble.",
+      "type": "Paragraph",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "loc": Object {
+            "end": Object {
               "column": 16,
               "line": 17,
             },
@@ -538,6 +580,128 @@ example inline image followed by an example block image:",
           ],
           "raw": "An example table",
           "type": "Header",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "type": "Str",
+              "value": "[width=\\"60%\\",options=\\"header\\"]",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 30,
+              "line": 51,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 51,
+            },
+          },
+          "range": Array [
+            1422,
+            1452,
+          ],
+          "raw": "[width=\\"60%\\",options=\\"header\\"]",
+          "type": "Attributes",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "children": Array [
+                Object {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 8,
+                      "line": 53,
+                    },
+                    "start": Object {
+                      "column": 2,
+                      "line": 53,
+                    },
+                  },
+                  "range": Array [
+                    1503,
+                    1509,
+                  ],
+                  "raw": "Option",
+                  "type": "Str",
+                  "value": "Option",
+                },
+              ],
+              "loc": Object {
+                "end": Object {
+                  "column": 8,
+                  "line": 53,
+                },
+                "start": Object {
+                  "column": 2,
+                  "line": 53,
+                },
+              },
+              "range": Array [
+                1503,
+                1509,
+              ],
+              "raw": "Option",
+              "type": "TableCell",
+            },
+            Object {
+              "children": Array [
+                Object {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 53,
+                    },
+                    "start": Object {
+                      "column": 20,
+                      "line": 53,
+                    },
+                  },
+                  "range": Array [
+                    1521,
+                    1532,
+                  ],
+                  "raw": "Description",
+                  "type": "Str",
+                  "value": "Description",
+                },
+              ],
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 53,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 53,
+                },
+              },
+              "range": Array [
+                1521,
+                1532,
+              ],
+              "raw": "Description",
+              "type": "TableCell",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 31,
+              "line": 53,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 53,
+            },
+          },
+          "range": Array [
+            1503,
+            1532,
+          ],
+          "raw": "",
+          "type": "TableRow",
         },
         Object {
           "children": Array [
@@ -2282,6 +2446,48 @@ Object {
       ],
       "raw": "Asciidoctor Demo",
       "type": "Header",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "loc": Object {
+            "end": Object {
+              "column": 42,
+              "line": 28,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 27,
+            },
+          },
+          "range": Array [
+            558,
+            660,
+          ],
+          "raw": "This is a demonstration of {library} {asciidoctor-version}.
+And this is the preamble of this document.",
+          "type": "Str",
+          "value": "This is a demonstration of {library} {asciidoctor-version}.
+And this is the preamble of this document.",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 42,
+          "line": 28,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 27,
+        },
+      },
+      "range": Array [
+        558,
+        660,
+      ],
+      "raw": "This is a demonstration of {library} {asciidoctor-version}.
+And this is the preamble of this document.",
+      "type": "Paragraph",
     },
     Object {
       "children": Array [
@@ -6687,6 +6893,48 @@ Object {
         Object {
           "loc": Object {
             "end": Object {
+              "column": 87,
+              "line": 17,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 16,
+            },
+          },
+          "range": Array [
+            289,
+            484,
+          ],
+          "raw": "This file shows information about the current file as well as the version of Asciidoctor running on GitHub.
+It also has some examples to show off the available features in the GitHub environment.",
+          "type": "Str",
+          "value": "This file shows information about the current file as well as the version of Asciidoctor running on GitHub.
+It also has some examples to show off the available features in the GitHub environment.",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 87,
+          "line": 17,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 16,
+        },
+      },
+      "range": Array [
+        289,
+        484,
+      ],
+      "raw": "This file shows information about the current file as well as the version of Asciidoctor running on GitHub.
+It also has some examples to show off the available features in the GitHub environment.",
+      "type": "Paragraph",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "loc": Object {
+            "end": Object {
               "column": 19,
               "line": 19,
             },
@@ -10495,6 +10743,104 @@ Object {
                         Object {
                           "loc": Object {
                             "end": Object {
+                              "column": 6,
+                              "line": 137,
+                            },
+                            "start": Object {
+                              "column": 1,
+                              "line": 137,
+                            },
+                          },
+                          "range": Array [
+                            2221,
+                            2226,
+                          ],
+                          "raw": "Month",
+                          "type": "Str",
+                          "value": "Month",
+                        },
+                      ],
+                      "loc": Object {
+                        "end": Object {
+                          "column": 6,
+                          "line": 137,
+                        },
+                        "start": Object {
+                          "column": 1,
+                          "line": 137,
+                        },
+                      },
+                      "range": Array [
+                        2221,
+                        2226,
+                      ],
+                      "raw": "Month",
+                      "type": "TableCell",
+                    },
+                    Object {
+                      "children": Array [
+                        Object {
+                          "loc": Object {
+                            "end": Object {
+                              "column": 15,
+                              "line": 137,
+                            },
+                            "start": Object {
+                              "column": 8,
+                              "line": 137,
+                            },
+                          },
+                          "range": Array [
+                            2228,
+                            2235,
+                          ],
+                          "raw": "Savings",
+                          "type": "Str",
+                          "value": "Savings",
+                        },
+                      ],
+                      "loc": Object {
+                        "end": Object {
+                          "column": 15,
+                          "line": 137,
+                        },
+                        "start": Object {
+                          "column": 8,
+                          "line": 137,
+                        },
+                      },
+                      "range": Array [
+                        2228,
+                        2235,
+                      ],
+                      "raw": "Savings",
+                      "type": "TableCell",
+                    },
+                  ],
+                  "loc": Object {
+                    "end": Object {
+                      "column": 15,
+                      "line": 137,
+                    },
+                    "start": Object {
+                      "column": 1,
+                      "line": 137,
+                    },
+                  },
+                  "range": Array [
+                    2221,
+                    2235,
+                  ],
+                  "raw": "",
+                  "type": "TableRow",
+                },
+                Object {
+                  "children": Array [
+                    Object {
+                      "children": Array [
+                        Object {
+                          "loc": Object {
+                            "end": Object {
                               "column": 4,
                               "line": 139,
                             },
@@ -10692,11 +11038,11 @@ Object {
                 },
                 "start": Object {
                   "column": 1,
-                  "line": 139,
+                  "line": 137,
                 },
               },
               "range": Array [
-                2238,
+                2221,
                 2258,
               ],
               "raw": "",
