@@ -584,6 +584,21 @@ example inline image followed by an example block image:",
         Object {
           "children": Array [
             Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 30,
+                  "line": 51,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 51,
+                },
+              },
+              "range": Array [
+                1422,
+                1452,
+              ],
+              "raw": "[width=\\"60%\\",options=\\"header\\"]",
               "type": "Str",
               "value": "[width=\\"60%\\",options=\\"header\\"]",
             },

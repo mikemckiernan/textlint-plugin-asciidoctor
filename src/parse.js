@@ -454,7 +454,7 @@ class Converter {
     return [
       {
         type: "Attributes",
-        children: [{ type: "Str", value: attrs }],
+        children: [{ type: "Str", value: attrs, loc, range, raw: attrs }],
         loc,
         range,
         raw: attrs
