@@ -1,7 +1,7 @@
 // LICENSE : MIT
-"use strict";
+'use strict';
 
-const asciidoctor = require("asciidoctor.js")();
+const asciidoctor = require('asciidoctor.js')();
 
 class Converter {
   convert(text) {
@@ -17,7 +17,7 @@ class Converter {
     const elements = this.convertElement(doc, {
       min: 1,
       max: this.lines.length,
-      update: true,
+      update: true
     });
     if (elements.length === 0) {
       return this.createEmptyDocument();
@@ -26,30 +26,30 @@ class Converter {
   }
 
   convertElement(elem, lineno) {
-    if (elem.context === "document") {
+    if (elem.context === 'document') {
       return this.convertDocument(elem, lineno);
-    } else if (["paragraph", "literal"].includes(elem.context)) {
+    } else if (['paragraph', 'literal'].includes(elem.context)) {
       return this.convertParagraph(elem, lineno);
-    } else if (elem.context === "ulist" || elem.context === "olist") {
+    } else if (elem.context === 'ulist' || elem.context === 'olist') {
       return this.convertList(elem, lineno);
-    } else if (elem.context === "list_item") {
+    } else if (elem.context === 'list_item') {
       return this.convertListItem(elem, lineno);
-    } else if (elem.context === "dlist") {
+    } else if (elem.context === 'dlist') {
       return this.convertDefinitionList(elem, lineno);
-    } else if (elem.context === "quote") {
+    } else if (elem.context === 'quote') {
       return this.convertQuote(elem, lineno);
-    } else if (elem.context === "listing") {
+    } else if (elem.context === 'listing') {
       return this.convertListing(elem, lineno);
-    } else if (elem.context === "section") {
+    } else if (elem.context === 'section') {
       return this.convertSection(elem, lineno);
-    } else if (elem.context === "table") {
+    } else if (elem.context === 'table') {
       return this.convertTable(elem, lineno);
-    } else if (elem.context === "preamble") {
+    } else if (elem.context === 'preamble') {
       return this.convertElementList(elem.getBlocks(), lineno);
-    } else if (["admonition", "example"].includes(elem.context)) {
+    } else if (['admonition', 'example'].includes(elem.context)) {
       return this.convertElementList(elem.$blocks(), {
         ...lineno,
-        update: false,
+        update: false
       });
     }
     return [];
@@ -58,7 +58,7 @@ class Converter {
   convertDocument(elem, lineno) {
     const raw = elem.$source();
     let children = this.convertElementList(elem.$blocks(), lineno);
-    if (!elem.$header()["$nil?"]()) {
+    if (!elem.$header()['$nil?']()) {
       children = [this.convertHeader(elem.$header(), lineno), ...children];
     }
     if (children.length === 0) {
@@ -66,40 +66,40 @@ class Converter {
     }
     const loc = {
       start: children[0].loc.start,
-      end: children[children.length - 1].loc.end,
+      end: children[children.length - 1].loc.end
     };
     const range = this.locationToRange(loc);
-    return [{ type: "Document", children, loc, range, raw }];
+    return [{ type: 'Document', children, loc, range, raw }];
   }
 
   convertHeader(elem, lineno) {
     const raw = elem.title;
-    const loc = this.findLocation([raw], { ...lineno, type: "Header" });
+    const loc = this.findLocation([raw], { ...lineno, type: 'Header' });
     const range = this.locationToRange(loc);
     return {
-      type: "Header",
+      type: 'Header',
       depth: elem.$level() + 1,
-      children: [{ type: "Str", value: elem.title, loc, range, raw }],
+      children: [{ type: 'Str', value: elem.title, loc, range, raw }],
       loc,
       range,
-      raw,
+      raw
     };
   }
 
   convertSection(elem, lineno) {
     const raw = elem.title;
-    const loc = this.findLocation([raw], { ...lineno, type: "Header" });
+    const loc = this.findLocation([raw], { ...lineno, type: 'Header' });
     if (!loc) {
       return [];
     }
     const range = this.locationToRange(loc);
     const header = {
-      type: "Header",
+      type: 'Header',
       depth: elem.$level() + 1,
-      children: [{ type: "Str", value: elem.title, loc, range, raw }],
+      children: [{ type: 'Str', value: elem.title, loc, range, raw }],
       loc,
       range,
-      raw,
+      raw
     };
     const children = this.convertElementList(elem.$blocks(), lineno);
     return [header, ...children];
@@ -109,7 +109,7 @@ class Converter {
     const raw = elem.$source();
     const loc = this.findLocation(elem.$lines(), {
       ...lineno,
-      type: "Paragraph",
+      type: 'Paragraph'
     });
     if (!loc) {
       return [];
@@ -117,26 +117,26 @@ class Converter {
     const range = this.locationToRange(loc);
     return [
       {
-        type: "Paragraph",
-        children: [{ type: "Str", value: raw, loc, range, raw }],
+        type: 'Paragraph',
+        children: [{ type: 'Str', value: raw, loc, range, raw }],
         loc,
         range,
-        raw,
-      },
+        raw
+      }
     ];
   }
 
   convertQuote(elem, lineno) {
-    const raw = ""; // TODO: fix asciidoc/asciidoc
+    const raw = ''; // TODO: fix asciidoc/asciidoc
     const children = this.convertElementList(elem.$blocks(), {
       ...lineno,
-      update: false,
+      update: false
     });
     if (children.length === 0) {
       return [];
     }
     return [
-      { type: "BlockQuote", children, raw, ...this.locAndRangeFrom(children) },
+      { type: 'BlockQuote', children, raw, ...this.locAndRangeFrom(children) }
     ];
   }
 
@@ -144,40 +144,40 @@ class Converter {
     const raw = elem.$source();
     const loc = this.findLocation(elem.$lines(), {
       ...lineno,
-      type: "CodeBlock",
+      type: 'CodeBlock'
     });
     if (!loc) {
       return [];
     }
     const range = this.locationToRange(loc);
     const attributes =
-      typeof elem.getAttributes === "function" ? elem.getAttributes() : {};
+      typeof elem.getAttributes === 'function' ? elem.getAttributes() : {};
     return [
       {
-        type: "CodeBlock",
+        type: 'CodeBlock',
         lang: attributes.language,
         value: raw,
         loc,
         range,
-        raw,
-      },
+        raw
+      }
     ];
   }
 
   convertList(elem, lineno) {
-    const raw = ""; // TODO: fix asciidoc/asciidoc
+    const raw = ''; // TODO: fix asciidoc/asciidoc
     const children = this.convertElementList(elem.$blocks(), {
       ...lineno,
-      update: false,
+      update: false
     });
     if (children.length === 0) {
       return [];
     }
-    return [{ type: "List", children, raw, ...this.locAndRangeFrom(children) }];
+    return [{ type: 'List', children, raw, ...this.locAndRangeFrom(children) }];
   }
 
   convertDefinitionList(elem, lineno) {
-    const raw = ""; // TODO: fix asciidoc/asciidoc
+    const raw = ''; // TODO: fix asciidoc/asciidoc
     const concat = Array.prototype.concat;
     const blocks = concat.apply(
       [],
@@ -185,18 +185,18 @@ class Converter {
     );
     const children = this.convertElementList(blocks, {
       ...lineno,
-      update: false,
+      update: false
     });
     if (children.length === 0) {
       return [];
     }
-    return [{ type: "List", children, raw, ...this.locAndRangeFrom(children) }];
+    return [{ type: 'List', children, raw, ...this.locAndRangeFrom(children) }];
   }
 
   convertListItem(elem, lineno) {
-    const raw = ""; // TODO: fix asciidoc/asciidoc
+    const raw = ''; // TODO: fix asciidoc/asciidoc
     let children = this.convertElementList(elem.$blocks(), lineno);
-    if (!elem.text["$nil?"]()) {
+    if (!elem.text['$nil?']()) {
       children = [...this.createParagraph(elem.text, lineno), ...children];
     }
     if (children.length === 0) {
@@ -204,11 +204,11 @@ class Converter {
     }
     return [
       {
-        type: "ListItem",
+        type: 'ListItem',
         children,
         raw,
-        ...this.locAndRangeFrom(children),
-      },
+        ...this.locAndRangeFrom(children)
+      }
     ];
   }
 
@@ -216,7 +216,7 @@ class Converter {
     const raw = elem.text;
     const loc = this.findLocation(raw.split(/\n/), {
       ...lineno,
-      type: "TableCell",
+      type: 'TableCell'
     });
     if (!loc) {
       return [];
@@ -224,7 +224,7 @@ class Converter {
     const range = this.locationToRange(loc);
 
     let children = [];
-    if (elem.style === "asciidoc") {
+    if (elem.style === 'asciidoc') {
       children = this.convertElementList(
         elem.$inner_document().$blocks(),
         lineno
@@ -232,23 +232,23 @@ class Converter {
     } else {
       children = [
         {
-          type: "Str",
+          type: 'Str',
           value: raw,
           loc,
           range,
-          raw,
-        },
+          raw
+        }
       ];
     }
 
     return [
       {
-        type: "TableCell",
+        type: 'TableCell',
         children,
         loc,
         range,
-        raw,
-      },
+        raw
+      }
     ];
   }
 
@@ -262,39 +262,39 @@ class Converter {
     }
     const loc = {
       start: children[0].loc.start,
-      end: children[children.length - 1].loc.end,
+      end: children[children.length - 1].loc.end
     };
     const range = this.locationToRange(loc);
     return [
       {
-        type: "TableRow",
+        type: 'TableRow',
         children,
         loc,
         range,
-        raw: "",
-      },
+        raw: ''
+      }
     ];
   }
 
   convertTable(elem, lineno) {
     let children = [];
-    // This function is missing the $rows().$head() row.
-    if (typeof elem.title === "string") {
+
+    if (typeof elem.title === 'string') {
       // FIXME - 3
       const raw = elem.title;
       const loc = this.findLocation([raw], {
         min: Math.max(1, lineno.min - 3),
         max: lineno.min,
-        type: "Header",
+        type: 'Header'
       });
       const range = this.locationToRange(loc);
       children.push({
-        type: "Header",
+        type: 'Header',
         depth: 0,
-        children: [{ type: "Str", value: raw, loc, range, raw }],
+        children: [{ type: 'Str', value: raw, loc, range, raw }],
         loc,
         range,
-        raw,
+        raw
       });
     }
 
@@ -307,14 +307,20 @@ class Converter {
     for (let header of elem.$rows().$head()) {
       children = [
         ...children,
-        ...this.convertTableRow(header, { ...lineno, update: false }),
+        ...this.convertTableRow(header, { ...lineno, update: false })
       ];
     }
 
     for (let row of elem.$rows().$body()) {
+      var tmpLineno = lineno;
+      var prevRowEnd =
+        children.length > 0
+          ? children[children.length - 1].loc.end.line
+          : lineno.min;
+      tmpLineno.min = prevRowEnd + 1;
       children = [
         ...children,
-        ...this.convertTableRow(row, { ...lineno, update: false }),
+        ...this.convertTableRow(row, { ...lineno, update: false })
       ];
     }
 
@@ -324,26 +330,26 @@ class Converter {
 
     const loc = {
       start: children[0].loc.start,
-      end: children[children.length - 1].loc.end,
+      end: children[children.length - 1].loc.end
     };
 
     const range = this.locationToRange(loc);
 
     return [
       {
-        type: "Table",
+        type: 'Table',
         children,
         loc,
         range,
-        raw: "",
-      },
+        raw: ''
+      }
     ];
   }
 
   createParagraph(raw, lineno) {
     const loc = this.findLocation(raw.split(/\n/), {
       ...lineno,
-      type: "Paragraph",
+      type: 'Paragraph'
     });
     if (!loc) {
       return [];
@@ -351,19 +357,19 @@ class Converter {
     const range = this.locationToRange(loc);
     return [
       {
-        type: "Paragraph",
-        children: [{ type: "Str", value: raw, loc, range, raw }],
+        type: 'Paragraph',
+        children: [{ type: 'Str', value: raw, loc, range, raw }],
         loc,
         range,
-        raw,
-      },
+        raw
+      }
     ];
   }
 
   locAndRangeFrom(children) {
     const loc = {
       start: children[0].loc.start,
-      end: children[children.length - 1].loc.end,
+      end: children[children.length - 1].loc.end
     };
     const range = this.locationToRange(loc);
     return { loc, range };
@@ -398,7 +404,7 @@ class Converter {
       let offset = 0; // see "comment in paragraph" test case.
       for (let j = 0; j < lines.length; j++) {
         while (
-          type !== "CodeBlock" &&
+          type !== 'CodeBlock' &&
           this.lines[i + j - 1 + offset].match(/^\/\//)
         ) {
           offset++;
@@ -420,7 +426,7 @@ class Converter {
       return {
         // If the lines starts with //, set 0 instead of -1
         start: { line: i, column: column === -1 ? 0 : column },
-        end: { line: endLineNo, column: endColumn },
+        end: { line: endLineNo, column: endColumn }
       };
     }
     return null;
@@ -428,11 +434,11 @@ class Converter {
 
   createEmptyDocument() {
     return {
-      type: "Document",
+      type: 'Document',
       children: [],
       range: [0, 0],
       loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 0 } },
-      raw: "",
+      raw: ''
     };
   }
 
@@ -444,28 +450,28 @@ class Converter {
    */
   getTableAttributes(node, lineno) {
     const attributes =
-      typeof node.getAttributes === "function" ? node.getAttributes() : {};
-    if (typeof attributes !== "object") {
+      typeof node.getAttributes === 'function' ? node.getAttributes() : {};
+    if (typeof attributes !== 'object') {
       return [];
     }
 
     for (const key in attributes) {
       if (
         [
-          "attribute_entries",
-          "colcount",
-          "rowcount",
-          "style",
-          "tablepcwidth",
+          'attribute_entries',
+          'colcount',
+          'rowcount',
+          'style',
+          'tablepcwidth'
         ].includes(key) ||
-        attributes[key] === ""
+        attributes[key] === ''
       ) {
         delete attributes[key];
         continue;
       }
     }
 
-    let attrs = "";
+    let attrs = '';
     let count = Object.keys(attributes).length;
 
     for (let i = 0; i < count; ++i) {
@@ -473,15 +479,15 @@ class Converter {
 
       attrs += key + '="' + attributes[key] + '"';
       if (i < count - 1) {
-        attrs += ",";
+        attrs += ',';
       }
     }
-    attrs = "[" + attrs + "]";
+    attrs = '[' + attrs + ']';
 
-    const loc = this.findLocation(["["], {
+    const loc = this.findLocation(['['], {
       min: Math.max(1, lineno.min - 2),
       max: lineno.min,
-      type: "Attributes",
+      type: 'Attributes'
     });
     if (!loc) {
       return [];
@@ -491,12 +497,12 @@ class Converter {
 
     return [
       {
-        type: "Attributes",
-        children: [{ type: "Str", value: attrs, loc, range, raw: attrs }],
+        type: 'Attributes',
+        children: [{ type: 'Str', value: attrs, loc, range, raw: attrs }],
         loc,
         range,
-        raw: attrs,
-      },
+        raw: attrs
+      }
     ];
   }
 }

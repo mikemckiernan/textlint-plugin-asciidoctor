@@ -241,12 +241,12 @@ var foo = 1;
 `);
   testAST(node);
   expect(node.children[0]).toEqual(
-      oc({
-        type: "CodeBlock",
-        lang: "js",
-        value: `// comment
+    oc({
+      type: "CodeBlock",
+      lang: "js",
+      value: `// comment
 var foo = 1;`
-      })
+    })
   );
 });
 
@@ -321,6 +321,74 @@ test("simple table", () => {
             oc({
               type: "TableCell",
               children: [oc({ type: "Str", value: "D" })]
+            })
+          ]
+        })
+      ]
+    })
+  ]);
+});
+
+test("simple table with identical cell text", () => {
+  const node = parse(`\
+|===
+|A|common text
+|C|common text
+|===
+`);
+
+  testAST(node);
+  expect(node.children).toEqual([
+    oc({
+      type: "Table",
+      children: [
+        oc({
+          type: "TableRow",
+          children: [
+            oc({
+              type: "TableCell",
+              children: [
+                oc({
+                  type: "Str",
+                  value: "A",
+                  loc: oc({ start: oc({ line: 2 }) })
+                })
+              ]
+            }),
+            oc({
+              type: "TableCell",
+              children: [
+                oc({
+                  type: "Str",
+                  value: "common text",
+                  loc: oc({ start: oc({ line: 2 }) })
+                })
+              ]
+            })
+          ]
+        }),
+        oc({
+          type: "TableRow",
+          children: [
+            oc({
+              type: "TableCell",
+              children: [
+                oc({
+                  type: "Str",
+                  value: "C",
+                  loc: oc({ start: oc({ line: 3 }) })
+                })
+              ]
+            }),
+            oc({
+              type: "TableCell",
+              children: [
+                oc({
+                  type: "Str",
+                  value: "common text",
+                  loc: oc({ start: oc({ line: 3 }) })
+                })
+              ]
             })
           ]
         })
