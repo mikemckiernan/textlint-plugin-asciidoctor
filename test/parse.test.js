@@ -1,19 +1,19 @@
-import parse from '../src/parse';
-import { test as testAST } from '@textlint/ast-tester';
+import parse from "../src/parse";
+import { test as testAST } from "@textlint/ast-tester";
 
 const oc = jasmine.objectContaining;
 
-test('single word', () => {
-  const node = parse('text');
+test("single word", () => {
+  const node = parse("text");
   const loc = { start: { line: 1, column: 0 }, end: { line: 1, column: 4 } };
   const range = [0, 4];
-  const raw = 'text';
+  const raw = "text";
   const expected = {
-    type: 'Document',
+    type: "Document",
     children: [
       {
-        type: 'Paragraph',
-        children: [{ type: 'Str', value: 'text', loc, range, raw }],
+        type: "Paragraph",
+        children: [{ type: "Str", value: "text", loc, range, raw }],
         loc,
         range,
         raw
@@ -27,30 +27,30 @@ test('single word', () => {
   expect(node).toEqual(expected);
 });
 
-test('multiline paragraph', () => {
-  const node = parse('text\ntext\n');
+test("multiline paragraph", () => {
+  const node = parse("text\ntext\n");
   const expected = {
-    type: 'Str',
-    value: 'text\ntext',
+    type: "Str",
+    value: "text\ntext",
     loc: { start: { line: 1, column: 0 }, end: { line: 2, column: 4 } },
     range: [0, 9],
-    raw: 'text\ntext'
+    raw: "text\ntext"
   };
   testAST(node);
   expect(node.children[0].children[0]).toEqual(expected);
 });
 
-test('unordered list', () => {
-  const node = parse('- text');
+test("unordered list", () => {
+  const node = parse("- text");
   const loc = { start: { line: 1, column: 2 }, end: { line: 1, column: 6 } };
   const range = [2, 6];
-  const raw = 'text';
+  const raw = "text";
   const expected = {
-    type: 'ListItem',
+    type: "ListItem",
     children: [
       {
-        type: 'Paragraph',
-        children: [{ type: 'Str', value: 'text', loc, range, raw }],
+        type: "Paragraph",
+        children: [{ type: "Str", value: "text", loc, range, raw }],
         loc,
         range,
         raw
@@ -58,13 +58,13 @@ test('unordered list', () => {
     ],
     loc,
     range,
-    raw: ''
+    raw: ""
   };
   testAST(node);
   expect(node.children[0].children[0]).toEqual(expected);
 });
 
-test('nested unordered list', () => {
+test("nested unordered list", () => {
   const node = parse(`\
 * value 1
 ** value 2
@@ -74,32 +74,32 @@ test('nested unordered list', () => {
   testAST(node);
   expect(node).toEqual(
     oc({
-      type: 'Document',
+      type: "Document",
       children: [
         oc({
-          type: 'List',
+          type: "List",
           children: [
             oc({
-              type: 'ListItem',
+              type: "ListItem",
               children: [
                 oc({
-                  type: 'Paragraph',
+                  type: "Paragraph",
                   children: [
-                    oc({ type: 'Str', value: 'value 1', range: [2, 9] })
+                    oc({ type: "Str", value: "value 1", range: [2, 9] })
                   ]
                 }),
                 oc({
-                  type: 'List',
+                  type: "List",
                   children: [
                     oc({
-                      type: 'ListItem',
+                      type: "ListItem",
                       children: [
                         oc({
-                          type: 'Paragraph',
+                          type: "Paragraph",
                           children: [
                             oc({
-                              type: 'Str',
-                              value: 'value 2',
+                              type: "Str",
+                              value: "value 2",
                               range: [13, 20]
                             })
                           ]
@@ -111,12 +111,12 @@ test('nested unordered list', () => {
               ]
             }),
             oc({
-              type: 'ListItem',
+              type: "ListItem",
               children: [
                 oc({
-                  type: 'Paragraph',
+                  type: "Paragraph",
                   children: [
-                    oc({ type: 'Str', value: 'value 3', range: [23, 30] })
+                    oc({ type: "Str", value: "value 3", range: [23, 30] })
                   ]
                 })
               ]
@@ -128,17 +128,17 @@ test('nested unordered list', () => {
   );
 });
 
-test('ordered list', () => {
-  const node = parse('. text');
+test("ordered list", () => {
+  const node = parse(". text");
   const loc = { start: { line: 1, column: 2 }, end: { line: 1, column: 6 } };
   const range = [2, 6];
-  const raw = 'text';
+  const raw = "text";
   const expected = {
-    type: 'ListItem',
+    type: "ListItem",
     children: [
       {
-        type: 'Paragraph',
-        children: [{ type: 'Str', value: 'text', loc, range, raw }],
+        type: "Paragraph",
+        children: [{ type: "Str", value: "text", loc, range, raw }],
         loc,
         range,
         raw
@@ -146,66 +146,92 @@ test('ordered list', () => {
     ],
     loc,
     range,
-    raw: ''
+    raw: ""
   };
   testAST(node);
   expect(node.children[0].children[0]).toEqual(expected);
 });
 
-test('check list', () => {
-  const node = parse('* [*] checked\n* [ ] not checked');
+test("check list", () => {
+  const node = parse("* [*] checked\n* [ ] not checked");
   testAST(node);
   expect(node.children[0].children).toEqual([
     oc({
-      children: [oc({ children: [oc({ type: 'Str', value: 'checked' })] })]
+      children: [oc({ children: [oc({ type: "Str", value: "checked" })] })]
     }),
     oc({
-      children: [oc({ children: [oc({ type: 'Str', value: 'not checked' })] })]
+      children: [oc({ children: [oc({ type: "Str", value: "not checked" })] })]
     })
   ]);
 });
 
-test('labeled list', () => {
-  const node = parse('A:: B\nC:: D');
+test("labeled list", () => {
+  const node = parse("A:: B\nC:: D");
   testAST(node);
   expect(node.children[0]).toEqual(
     oc({
-      type: 'List',
+      type: "List",
       children: [
         oc({
-          type: 'ListItem',
-          children: [oc({ children: [oc({ value: 'A' })] })]
+          type: "ListItem",
+          children: [oc({ children: [oc({ value: "A" })] })]
         }),
         oc({
-          type: 'ListItem',
-          children: [oc({ children: [oc({ value: 'B' })] })]
+          type: "ListItem",
+          children: [oc({ children: [oc({ value: "B" })] })]
         }),
         oc({
-          type: 'ListItem',
-          children: [oc({ children: [oc({ value: 'C' })] })]
+          type: "ListItem",
+          children: [oc({ children: [oc({ value: "C" })] })]
         }),
         oc({
-          type: 'ListItem',
-          children: [oc({ children: [oc({ value: 'D' })] })]
+          type: "ListItem",
+          children: [oc({ children: [oc({ value: "D" })] })]
         })
       ]
     })
   );
 });
 
-test('blockquote', () => {
-  const node = parse('____\nblockquote\n____\n');
+test("list with identical text", () => {
+  const node = parse(`\
+First term::
+  definition
+
+Second term::
+  definition
+`);
+
   testAST(node);
   expect(node.children[0]).toEqual(
     oc({
-      type: 'BlockQuote',
+      type: "List",
       children: [
         oc({
-          type: 'Paragraph',
+          type: "ListItem",
+          children: [oc({ children: [oc({ value: "First term" })] })]
+        }),
+        oc({
+          type: "ListItem",
           children: [
             oc({
-              type: 'Str',
-              value: 'blockquote'
+              children: [
+                oc({ value: "definition", loc: oc({ start: oc({ line: 2 }) }) })
+              ]
+            })
+          ]
+        }),
+        oc({
+          type: "ListItem",
+          children: [oc({ children: [oc({ value: "Second term" })] })]
+        }),
+        oc({
+          type: "ListItem",
+          children: [
+            oc({
+              children: [
+                oc({ value: "definition", loc: oc({ start: oc({ line: 5 }) }) })
+              ]
             })
           ]
         })
@@ -214,7 +240,28 @@ test('blockquote', () => {
   );
 });
 
-test('code', () => {
+test("blockquote", () => {
+  const node = parse("____\nblockquote\n____\n");
+  testAST(node);
+  expect(node.children[0]).toEqual(
+    oc({
+      type: "BlockQuote",
+      children: [
+        oc({
+          type: "Paragraph",
+          children: [
+            oc({
+              type: "Str",
+              value: "blockquote"
+            })
+          ]
+        })
+      ]
+    })
+  );
+});
+
+test("code", () => {
   const node = parse(`\
 [source,ruby]
 ----
@@ -224,14 +271,14 @@ puts 'Hello, world!'
   testAST(node);
   expect(node.children[0]).toEqual(
     oc({
-      type: 'CodeBlock',
-      lang: 'ruby',
+      type: "CodeBlock",
+      lang: "ruby",
       value: "puts 'Hello, world!'"
     })
   );
 });
 
-test('code includes comment', () => {
+test("code includes comment", () => {
   const node = parse(`\
 [source,js]
 ----
@@ -242,15 +289,15 @@ var foo = 1;
   testAST(node);
   expect(node.children[0]).toEqual(
     oc({
-      type: 'CodeBlock',
-      lang: 'js',
+      type: "CodeBlock",
+      lang: "js",
       value: `// comment
 var foo = 1;`
     })
   );
 });
 
-test('headings', () => {
+test("headings", () => {
   const node = parse(`\
 = Title
 
@@ -264,28 +311,28 @@ Hello, world!
   testAST(node);
   expect(node.children).toEqual([
     oc({
-      type: 'Header',
+      type: "Header",
       depth: 1,
-      children: [oc({ type: 'Str', value: 'Title' })]
+      children: [oc({ type: "Str", value: "Title" })]
     }),
     oc({
-      type: 'Header',
+      type: "Header",
       depth: 2,
-      children: [oc({ type: 'Str', value: 'Level 1 Section' })]
+      children: [oc({ type: "Str", value: "Level 1 Section" })]
     }),
     oc({
-      type: 'Paragraph',
-      children: [oc({ type: 'Str', value: 'Hello, world!' })]
+      type: "Paragraph",
+      children: [oc({ type: "Str", value: "Hello, world!" })]
     }),
     oc({
-      type: 'Header',
+      type: "Header",
       depth: 3,
-      children: [oc({ type: 'Str', value: 'Level 2 Section' })]
+      children: [oc({ type: "Str", value: "Level 2 Section" })]
     })
   ]);
 });
 
-test('simple table', () => {
+test("simple table", () => {
   const node = parse(`\
 |===
 |A|B
@@ -296,31 +343,31 @@ test('simple table', () => {
   testAST(node);
   expect(node.children).toEqual([
     oc({
-      type: 'Table',
+      type: "Table",
       children: [
         oc({
-          type: 'TableRow',
+          type: "TableRow",
           children: [
             oc({
-              type: 'TableCell',
-              children: [oc({ type: 'Str', value: 'A' })]
+              type: "TableCell",
+              children: [oc({ type: "Str", value: "A" })]
             }),
             oc({
-              type: 'TableCell',
-              children: [oc({ type: 'Str', value: 'B' })]
+              type: "TableCell",
+              children: [oc({ type: "Str", value: "B" })]
             })
           ]
         }),
         oc({
-          type: 'TableRow',
+          type: "TableRow",
           children: [
             oc({
-              type: 'TableCell',
-              children: [oc({ type: 'Str', value: 'C' })]
+              type: "TableCell",
+              children: [oc({ type: "Str", value: "C" })]
             }),
             oc({
-              type: 'TableCell',
-              children: [oc({ type: 'Str', value: 'D' })]
+              type: "TableCell",
+              children: [oc({ type: "Str", value: "D" })]
             })
           ]
         })
@@ -329,90 +376,79 @@ test('simple table', () => {
   ]);
 });
 
-test('simple table with identical cell text', () => {
+test("simple table with identical cell text", () => {
   const node = parse(`\
 |===
-|A|common text
-|C|common text
-|identical |identical
+
+|Haystack with needles. |needle
+
+|Chocolate in someone's peanut butter.
+|peanut
 |===
 `);
 
   testAST(node);
   expect(node.children).toEqual([
     oc({
-      type: 'Table',
+      type: "Table",
       children: [
         oc({
-          type: 'TableRow',
+          type: "TableRow",
           children: [
             oc({
-              type: 'TableCell',
+              type: "TableCell",
               children: [
                 oc({
-                  type: 'Str',
-                  value: 'A',
-                  loc: oc({ start: oc({ line: 2 }) })
+                  type: "Str",
+                  value: "Haystack with needles.",
+                  loc: oc({
+                    start: oc({ line: 3, column: 1 }),
+                    end: oc({ line: 3, column: 23 })
+                  })
                 })
               ]
             }),
             oc({
-              type: 'TableCell',
+              type: "TableCell",
               children: [
                 oc({
-                  type: 'Str',
-                  value: 'common text',
-                  loc: oc({ start: oc({ line: 2 }) })
+                  type: "Str",
+                  value: "needle",
+                  loc: oc({
+                    start: oc({ line: 3, column: 15 }),
+                    end: oc({ line: 3, column: 21 })
+                  })
                 })
               ]
             })
           ]
         }),
         oc({
-          type: 'TableRow',
+          type: "TableRow",
           children: [
             oc({
-              type: 'TableCell',
+              type: "TableCell",
               children: [
                 oc({
-                  type: 'Str',
-                  value: 'C',
-                  loc: oc({ start: oc({ line: 3 }) })
+                  type: "Str",
+                  value: "Chocolate in someone's peanut butter.",
+                  loc: oc({
+                    start: oc({ line: 5, column: 1 }),
+                    end: oc({ line: 5, column: 38 })
+                  })
                 })
               ]
             }),
             oc({
-              type: 'TableCell',
+              type: "TableCell",
               children: [
                 oc({
-                  type: 'Str',
-                  value: 'common text',
-                  loc: oc({ start: oc({ line: 3 }) })
-                })
-              ]
-            })
-          ]
-        }),
-        oc({
-          type: 'TableRow',
-          children: [
-            oc({
-              type: 'TableCell',
-              children: [
-                oc({
-                  type: 'Str',
-                  value: 'identical',
-                  loc: oc({ start: oc({ column: 2 }) })
-                })
-              ]
-            }),
-            oc({
-              type: 'TableCell',
-              children: [
-                oc({
-                  type: 'Str',
-                  value: 'identical',
-                  loc: oc({ start: oc({ column: 12 }) })
+                  type: "Str",
+                  value: "peanut",
+                  loc: oc({
+                    start: oc({ line: 6, column: 1 }),
+                    end: oc({ line: 6, column: 7 })
+                  })
                 })
               ]
             })
@@ -423,7 +459,7 @@ test('simple table with identical cell text', () => {
   ]);
 });
 
-test('complex table', () => {
+test("complex table", () => {
   const node = parse(`\
 |===
 a|* text
@@ -433,26 +469,26 @@ a|* text
   testAST(node);
   expect(node.children).toEqual([
     oc({
-      type: 'Table',
+      type: "Table",
       children: [
         oc({
-          type: 'TableRow',
+          type: "TableRow",
           children: [
             oc({
-              type: 'TableCell',
+              type: "TableCell",
               children: [
                 oc({
-                  type: 'List',
+                  type: "List",
                   children: [
                     oc({
-                      type: 'ListItem',
+                      type: "ListItem",
                       children: [
                         oc({
-                          type: 'Paragraph',
+                          type: "Paragraph",
                           children: [
                             oc({
-                              type: 'Str',
-                              value: 'text'
+                              type: "Str",
+                              value: "text"
                             })
                           ]
                         })
@@ -469,7 +505,7 @@ a|* text
   ]);
 });
 
-test('admonition', () => {
+test("admonition", () => {
   const node = parse(`\
 [WARNING]
 ====
@@ -479,11 +515,11 @@ text
 
   testAST(node);
   expect(node.children).toEqual([
-    oc({ children: [oc({ type: 'Str', value: 'text' })] })
+    oc({ children: [oc({ type: "Str", value: "text" })] })
   ]);
 });
 
-test('example', () => {
+test("example", () => {
   const node = parse(`\
 ====
 text
@@ -492,11 +528,11 @@ text
 
   testAST(node);
   expect(node.children).toEqual([
-    oc({ children: [oc({ type: 'Str', value: 'text' })] })
+    oc({ children: [oc({ type: "Str", value: "text" })] })
   ]);
 });
 
-test('comment in paragraph', () => {
+test("comment in paragraph", () => {
   const node = parse(`
 A
 // C
@@ -504,17 +540,17 @@ B
 `);
   testAST(node);
   expect(node.children).toEqual([
-    oc({ type: 'Paragraph', children: [oc({ type: 'Str', value: 'A\nB' })] })
+    oc({ type: "Paragraph", children: [oc({ type: "Str", value: "A\nB" })] })
   ]);
 });
 
-test('literal', () => {
-  const node = parse(' text\n text');
+test("literal", () => {
+  const node = parse(" text\n text");
   testAST(node);
   expect(node.children).toEqual([
     oc({
-      type: 'Paragraph',
-      children: [oc({ type: 'Str', value: 'text\ntext' })]
+      type: "Paragraph",
+      children: [oc({ type: "Str", value: "text\ntext" })]
     })
   ]);
 });
