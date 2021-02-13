@@ -40,6 +40,20 @@ test("multiline paragraph", () => {
   expect(node.children[0].children[0]).toEqual(expected);
 });
 
+test("single-line comment then heading", () => {
+  const node = parse("// Comment.\n= Top-level heading\n\ntext\n");
+  const expected = {
+    type: "Str",
+    value: "Top-level heading",
+    loc: { start: { line: 2, column: 2 }, end: { line: 2, column: 19 } },
+    range: [14, 31],
+    raw: "Top-level heading"
+  };
+
+  testAST(node);
+  expect(node.children[0].children[0]).toEqual(expected);
+});
+
 test("unordered list", () => {
   const node = parse("- text");
   const loc = { start: { line: 1, column: 2 }, end: { line: 1, column: 6 } };

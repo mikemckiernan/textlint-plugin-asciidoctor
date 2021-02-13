@@ -74,6 +74,7 @@ class Converter {
 
   convertHeader(elem, lineno) {
     const raw = elem.title;
+    lineno.min = elem.getLineNumber();
     const loc = this.findLocation([raw], { ...lineno, type: "Header" });
     const range = this.locationToRange(loc);
     return {
