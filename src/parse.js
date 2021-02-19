@@ -42,8 +42,14 @@ class Converter {
       return this.convertListing(elem, lineno);
     } else if (elem.context === "section") {
       return this.convertSection(elem, lineno);
+    } else if (elem.context === "sidebar") {
+      return this.convertSidebar(elem, lineno);
     } else if (elem.context === "table") {
       return this.convertTable(elem, lineno);
+    } else if (elem.context === "image") {
+      return this.convertImage(elem, lineno);
+    } else if (elem.context === "toc") {
+      return this.convertToc(elem, lineno);
     } else if (elem.context === "preamble") {
       return this.convertElementList(elem.getBlocks(), lineno);
     } else if (["admonition", "example"].includes(elem.context)) {
@@ -51,16 +57,29 @@ class Converter {
         ...lineno,
         update: false
       });
+    } else {
+      //console.error("need to handle element: " + elem.context);
+      //process.exit(1);
     }
     return [];
   }
 
   convertDocument(elem, lineno) {
     const raw = elem.$source();
+    // const authors = this.convertAuthors(elem, lineno);
+
     let children = this.convertElementList(elem.$blocks(), lineno);
     if (!elem.$header()["$nil?"]()) {
       children = [this.convertHeader(elem.$header(), lineno), ...children];
     }
+
+    let id = this.convertId(elem, lineno);
+    if (id && id.raw) {
+      children = [id, ...children];
+    }
+    // if (authors) {
+    //   children = [authors, ...children];
+    // }
     if (children.length === 0) {
       return [];
     }
@@ -88,6 +107,8 @@ class Converter {
   }
 
   convertSection(elem, lineno) {
+    let children = [];
+
     const raw = elem.title;
     const loc = this.findLocation([raw], { ...lineno, type: "Header" });
     if (!loc) {
@@ -102,8 +123,17 @@ class Converter {
       range,
       raw
     };
-    const children = this.convertElementList(elem.$blocks(), lineno);
-    return [header, ...children];
+
+    let id = this.convertId(elem, lineno);
+    if (id && id.raw) {
+      children = [id];
+    }
+    children = [
+      ...children,
+      header,
+      ...this.convertElementList(elem.$blocks(), lineno)
+    ];
+    return children;
   }
 
   convertParagraph(elem, lineno) {
@@ -448,6 +478,24 @@ class Converter {
     return null;
   }
 
+  // Find the location by starting from the original lineno.min
+  // and iteratively search at lineno.min - 1.
+  findLocationBackward(lines, { min, max, type, startIdx }, count) {
+    const origMin = min;
+    for (let i = min - 1; i > 0 && i > origMin - count; i--) {
+      const location = this.findLocation(lines, {
+        min: i,
+        max: origMin,
+        type,
+        startIdx
+      });
+      if (location !== null) {
+        return location;
+      }
+    }
+    return null;
+  }
+
   createEmptyDocument() {
     return {
       type: "Document",
@@ -520,6 +568,260 @@ class Converter {
         raw: attrs
       }
     ];
+  }
+
+  convertAuthors(elem, lineno) {
+    let authors = [];
+
+    for (let author of elem.getAuthors()) {
+      console.log(author);
+      let children = [];
+      const name = this.convertAuthorName(author, lineno);
+      if (name) {
+        children.push(name);
+      }
+      const email = this.convertAuthorEmail(author, lineno);
+      if (email) {
+        children.push(email);
+      }
+
+      authors.push({
+        type: "Author",
+        children: [name, email],
+        raw: "",
+        ...this.locAndRangeFrom(children)
+      });
+    }
+    if (0 === authors.length) {
+      return {};
+    }
+    const obj = {
+      type: "Authors",
+      children: [authors],
+      raw: "",
+      ...this.locAndRangeFrom(authors)
+    };
+
+    return obj;
+  }
+
+  convertAuthorEmail(author, lineno) {
+    const raw = author.getEmail();
+    const loc = this.findLocation([raw], {
+      ...lineno,
+      type: "AuthorEmail"
+    });
+    if (!loc) {
+      return {};
+    }
+    const range = this.locationToRange(loc);
+    const obj = {
+      type: "AuthorEmail",
+      children: [{ type: "Str", value: raw, loc, range, raw }],
+      loc,
+      range,
+      raw
+    };
+    return obj;
+  }
+
+  convertAuthorName(author, lineno) {
+    const raw = author.getName();
+    const loc = this.findLocation([raw], {
+      ...lineno,
+      type: "AuthorName"
+    });
+    if (!loc) {
+      return {};
+    }
+    const range = this.locationToRange(loc);
+    const obj = {
+      type: "AuthorName",
+      children: [{ type: "Str", value: raw, loc, range, raw }],
+      loc,
+      range,
+      raw
+    };
+    return obj;
+  }
+
+  convertId(elem, lineno) {
+    if (typeof elem.getId !== "function" || elem.getId() === "") {
+      return {};
+    }
+    const raw = elem.getId();
+    const loc = this.findLocationBackward(
+      [raw],
+      {
+        ...lineno,
+        type: "ID"
+      },
+      2 /* Look backward at most two lines. */
+    );
+    if (!loc) {
+      return {};
+    }
+    const range = this.locationToRange(loc);
+    const obj = {
+      type: "ID",
+      children: [{ type: "Str", value: raw, loc, range, raw }],
+      loc,
+      range,
+      raw
+    };
+    return obj;
+  }
+
+  convertToc(elem, lineno) {
+    const line = elem.getSourceLocation().lineno - 1;
+    const raw = this.lines[line];
+    const loc = this.findLocation([raw], {
+      ...lineno,
+      type: "TOC"
+    });
+    if (!loc) {
+      return {};
+    }
+    const range = this.locationToRange(loc);
+    const obj = {
+      type: "TOC",
+      children: [{ type: "Str", value: raw, loc, range, raw }],
+      loc,
+      range,
+      raw
+    };
+    return obj;
+  }
+
+  // Attributes appear to be alt, imagesdir, target
+  // An image can also have a title, in .Block title form.
+  convertImage(elem, lineno) {
+    const line = elem.getSourceLocation().lineno - 1;
+    const raw = this.lines[line];
+    const loc = this.findLocation([raw], {
+      ...lineno,
+      type: "Image"
+    });
+    if (!loc) {
+      return {};
+    }
+    const range = this.locationToRange(loc);
+
+    const attrs = this.getAttributes(elem, lineno, [
+      "alt",
+      "imagesdir",
+      "target"
+    ]);
+    let children = [{ type: "Str", value: raw, loc, range, raw }];
+    if (attrs.length > 0) {
+      children = [attrs, ...children];
+    }
+
+    // The block title is on an earlier line than the image.
+    let tmpLineno = lineno;
+    tmpLineno.min = Math.max(1, lineno.min - 2);
+    const title = this.getBlockTitle(elem, tmpLineno);
+
+    if ("type" in title) {
+      children = [title, ...children];
+    }
+    const obj = {
+      type: "Image",
+      children: children,
+      loc,
+      range,
+      raw
+    };
+    return obj;
+  }
+
+  getAttributes(elem, lineno, keys) {
+    if (typeof elem.getAttributes !== "function") {
+      return [];
+    }
+
+    let children = [];
+    for (const pos in keys) {
+      const line = elem.getSourceLocation().lineno - 1;
+      const raw = elem.getAttribute(keys[pos]);
+      const loc = this.findLocation([raw], {
+        ...lineno,
+        type: "Attribute"
+      });
+      if (!loc || typeof raw === "undefined") {
+        continue;
+      }
+      const range = this.locationToRange(loc);
+      children.push({
+        type: "Attribute",
+        name: keys[pos],
+        children: [{ type: "Str", value: raw, loc, range, raw }],
+        loc,
+        range,
+        raw
+      });
+    }
+    return children;
+  }
+
+  getBlockTitle(elem, lineno) {
+    if (typeof elem.hasTitle !== "function" || elem.hasTitle() === false) {
+      return [];
+    }
+
+    const line = elem.getSourceLocation().lineno - 1;
+    const raw = "." + elem.getTitle();
+    const loc = this.findLocation([raw], {
+      ...lineno,
+      type: "Attribute"
+    });
+    if (!loc || typeof raw === "undefined") {
+      return [];
+    }
+    const range = this.locationToRange(loc);
+    const obj = {
+      type: "BlockTitle",
+      children: [{ type: "Str", value: raw, loc, range, raw }],
+      loc,
+      range,
+      raw
+    };
+    return obj;
+  }
+
+  // This is nearly identical to convertSection.
+  convertSidebar(elem, lineno) {
+    let title = {};
+
+    if (elem.hasTitle()) {
+      const raw = "." + elem.getTitle();
+      var tmpLineno = lineno;
+      tmpLineno.min = Math.max(1, lineno.min - 1);
+      const loc = this.findLocation([raw], { ...tmpLineno, type: "Header" });
+      const range = this.locationToRange(loc);
+      title = {
+        type: "Header",
+        depth: elem.level,
+        children: [{ type: "Str", value: elem.title, loc, range, raw }],
+        loc,
+        range,
+        raw
+      };
+    }
+
+    let children = this.convertElementList(elem.$blocks(), lineno);
+
+    if ("type" in title) {
+      children = [title, ...children];
+    }
+
+    const obj = {
+      type: "Sidebar",
+      children: children,
+      raw: "",
+      ...this.locAndRangeFrom(children)
+    };
+    return obj;
   }
 }
 

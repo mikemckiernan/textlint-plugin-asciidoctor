@@ -41,17 +41,29 @@ test("multiline paragraph", () => {
 });
 
 test("single-line comment then heading", () => {
-  const node = parse("// Comment.\n= Top-level heading\n\ntext\n");
+  const node = parse(
+    "// Comment.\n\n[id='top-level-heading']\n= Top-level heading\n\ntext\n"
+  );
+  const ID = {
+    type: "Str",
+    value: "top-level-heading",
+    loc: { start: { line: 3, column: 5 }, end: { line: 3, column: 22 } },
+    range: [18, 35],
+    raw: "top-level-heading"
+  };
   const expected = {
     type: "Str",
     value: "Top-level heading",
-    loc: { start: { line: 2, column: 2 }, end: { line: 2, column: 19 } },
-    range: [14, 31],
+    loc: { start: { line: 4, column: 2 }, end: { line: 4, column: 19 } },
+    range: [40, 57],
     raw: "Top-level heading"
   };
 
   testAST(node);
-  expect(node.children[0].children[0]).toEqual(expected);
+  expect(node.children[0].type).toEqual("ID");
+  expect(node.children[0].children[0]).toEqual(ID);
+  expect(node.children[1].type).toEqual("Header");
+  expect(node.children[1].children[0]).toEqual(expected);
 });
 
 test("unordered list", () => {

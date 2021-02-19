@@ -503,6 +503,166 @@ example inline image followed by an example block image:",
     Object {
       "children": Array [
         Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 45,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 45,
+                },
+              },
+              "range": Array [
+                1323,
+                1341,
+              ],
+              "raw": ".Tiger block image",
+              "type": "Str",
+              "value": ".Tiger block image",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 18,
+              "line": 45,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 45,
+            },
+          },
+          "range": Array [
+            1323,
+            1341,
+          ],
+          "raw": ".Tiger block image",
+          "type": "BlockTitle",
+        },
+        Array [
+          Object {
+            "children": Array [
+              Object {
+                "loc": Object {
+                  "end": Object {
+                    "column": 28,
+                    "line": 46,
+                  },
+                  "start": Object {
+                    "column": 17,
+                    "line": 46,
+                  },
+                },
+                "range": Array [
+                  1359,
+                  1370,
+                ],
+                "raw": "Tiger image",
+                "type": "Str",
+                "value": "Tiger image",
+              },
+            ],
+            "loc": Object {
+              "end": Object {
+                "column": 28,
+                "line": 46,
+              },
+              "start": Object {
+                "column": 17,
+                "line": 46,
+              },
+            },
+            "name": "alt",
+            "range": Array [
+              1359,
+              1370,
+            ],
+            "raw": "Tiger image",
+            "type": "Attribute",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "loc": Object {
+                  "end": Object {
+                    "column": 16,
+                    "line": 46,
+                  },
+                  "start": Object {
+                    "column": 7,
+                    "line": 46,
+                  },
+                },
+                "range": Array [
+                  1349,
+                  1358,
+                ],
+                "raw": "tiger.png",
+                "type": "Str",
+                "value": "tiger.png",
+              },
+            ],
+            "loc": Object {
+              "end": Object {
+                "column": 16,
+                "line": 46,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 46,
+              },
+            },
+            "name": "target",
+            "range": Array [
+              1349,
+              1358,
+            ],
+            "raw": "tiger.png",
+            "type": "Attribute",
+          },
+        ],
+        Object {
+          "loc": Object {
+            "end": Object {
+              "column": 29,
+              "line": 46,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 46,
+            },
+          },
+          "range": Array [
+            1342,
+            1371,
+          ],
+          "raw": "image::tiger.png[Tiger image]",
+          "type": "Str",
+          "value": "image::tiger.png[Tiger image]",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 29,
+          "line": 46,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 46,
+        },
+      },
+      "range": Array [
+        1342,
+        1371,
+      ],
+      "raw": "image::tiger.png[Tiger image]",
+      "type": "Image",
+    },
+    Object {
+      "children": Array [
+        Object {
           "loc": Object {
             "end": Object {
               "column": 29,
@@ -970,6 +1130,45 @@ example inline image followed by an example block image:",
       ],
       "raw": "Lorum ipum...",
       "type": "Paragraph",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "loc": Object {
+            "end": Object {
+              "column": 4,
+              "line": 63,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 63,
+            },
+          },
+          "range": Array [
+            1806,
+            1808,
+          ],
+          "raw": "X1",
+          "type": "Str",
+          "value": "X1",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 4,
+          "line": 63,
+        },
+        "start": Object {
+          "column": 2,
+          "line": 63,
+        },
+      },
+      "range": Array [
+        1806,
+        1808,
+      ],
+      "raw": "X1",
+      "type": "ID",
     },
     Object {
       "children": Array [
@@ -2503,6 +2702,105 @@ And this is the preamble of this document.",
       "raw": "This is a demonstration of {library} {asciidoctor-version}.
 And this is the preamble of this document.",
       "type": "Paragraph",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 8,
+                  "line": 37,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 37,
+                },
+              },
+              "range": Array [
+                748,
+                756,
+              ],
+              "raw": ".Purpose",
+              "type": "Str",
+              "value": "Purpose",
+            },
+          ],
+          "depth": 0,
+          "loc": Object {
+            "end": Object {
+              "column": 8,
+              "line": 37,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 37,
+            },
+          },
+          "range": Array [
+            748,
+            756,
+          ],
+          "raw": ".Purpose",
+          "type": "Header",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 94,
+                  "line": 39,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 39,
+                },
+              },
+              "range": Array [
+                762,
+                856,
+              ],
+              "raw": "This document exercises many of the features of AsciiDoc to test the {library} implementation.",
+              "type": "Str",
+              "value": "This document exercises many of the features of AsciiDoc to test the {library} implementation.",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 94,
+              "line": 39,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 39,
+            },
+          },
+          "range": Array [
+            762,
+            856,
+          ],
+          "raw": "This document exercises many of the features of AsciiDoc to test the {library} implementation.",
+          "type": "Paragraph",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 94,
+          "line": 39,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 37,
+        },
+      },
+      "range": Array [
+        748,
+        856,
+      ],
+      "raw": "",
+      "type": "Sidebar",
     },
     Object {
       "children": Array [
@@ -5459,6 +5757,166 @@ first level",
       "type": "Paragraph",
     },
     Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 152,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 152,
+                },
+              },
+              "range": Array [
+                3714,
+                3729,
+              ],
+              "raw": ".Tiger in a box",
+              "type": "Str",
+              "value": ".Tiger in a box",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 152,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 152,
+            },
+          },
+          "range": Array [
+            3714,
+            3729,
+          ],
+          "raw": ".Tiger in a box",
+          "type": "BlockTitle",
+        },
+        Array [
+          Object {
+            "children": Array [
+              Object {
+                "loc": Object {
+                  "end": Object {
+                    "column": 12,
+                    "line": 153,
+                  },
+                  "start": Object {
+                    "column": 7,
+                    "line": 153,
+                  },
+                },
+                "range": Array [
+                  3737,
+                  3742,
+                ],
+                "raw": "tiger",
+                "type": "Str",
+                "value": "tiger",
+              },
+            ],
+            "loc": Object {
+              "end": Object {
+                "column": 12,
+                "line": 153,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 153,
+              },
+            },
+            "name": "alt",
+            "range": Array [
+              3737,
+              3742,
+            ],
+            "raw": "tiger",
+            "type": "Attribute",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "loc": Object {
+                  "end": Object {
+                    "column": 16,
+                    "line": 153,
+                  },
+                  "start": Object {
+                    "column": 7,
+                    "line": 153,
+                  },
+                },
+                "range": Array [
+                  3737,
+                  3746,
+                ],
+                "raw": "tiger.png",
+                "type": "Str",
+                "value": "tiger.png",
+              },
+            ],
+            "loc": Object {
+              "end": Object {
+                "column": 16,
+                "line": 153,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 153,
+              },
+            },
+            "name": "target",
+            "range": Array [
+              3737,
+              3746,
+            ],
+            "raw": "tiger.png",
+            "type": "Attribute",
+          },
+        ],
+        Object {
+          "loc": Object {
+            "end": Object {
+              "column": 18,
+              "line": 153,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 153,
+            },
+          },
+          "range": Array [
+            3730,
+            3748,
+          ],
+          "raw": "image::tiger.png[]",
+          "type": "Str",
+          "value": "image::tiger.png[]",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 18,
+          "line": 153,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 153,
+        },
+      },
+      "range": Array [
+        3730,
+        3748,
+      ],
+      "raw": "image::tiger.png[]",
+      "type": "Image",
+    },
+    Object {
       "lang": "ruby",
       "loc": Object {
         "end": Object {
@@ -5829,6 +6287,45 @@ however improbable, must be the truth.",
       ],
       "raw": "\\"\`Get moving!\`\\" he shouted.",
       "type": "Paragraph",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "loc": Object {
+            "end": Object {
+              "column": 30,
+              "line": 217,
+            },
+            "start": Object {
+              "column": 21,
+              "line": 217,
+            },
+          },
+          "range": Array [
+            5091,
+            5100,
+          ],
+          "raw": "literally",
+          "type": "Str",
+          "value": "literally",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 30,
+          "line": 217,
+        },
+        "start": Object {
+          "column": 21,
+          "line": 217,
+        },
+      },
+      "range": Array [
+        5091,
+        5100,
+      ],
+      "raw": "literally",
+      "type": "ID",
     },
     Object {
       "children": Array [
@@ -9818,6 +10315,147 @@ It also has some examples to show off the available features in the GitHub envir
           "range": Array [
             1761,
             1774,
+          ],
+          "raw": "",
+          "type": "ListItem",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "children": Array [
+                Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "loc": Object {
+                          "end": Object {
+                            "column": 22,
+                            "line": 113,
+                          },
+                          "start": Object {
+                            "column": 17,
+                            "line": 113,
+                          },
+                        },
+                        "range": Array [
+                          1796,
+                          1801,
+                        ],
+                        "raw": "Tiger",
+                        "type": "Str",
+                        "value": "Tiger",
+                      },
+                    ],
+                    "loc": Object {
+                      "end": Object {
+                        "column": 22,
+                        "line": 113,
+                      },
+                      "start": Object {
+                        "column": 17,
+                        "line": 113,
+                      },
+                    },
+                    "name": "alt",
+                    "range": Array [
+                      1796,
+                      1801,
+                    ],
+                    "raw": "Tiger",
+                    "type": "Attribute",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "loc": Object {
+                          "end": Object {
+                            "column": 16,
+                            "line": 113,
+                          },
+                          "start": Object {
+                            "column": 7,
+                            "line": 113,
+                          },
+                        },
+                        "range": Array [
+                          1786,
+                          1795,
+                        ],
+                        "raw": "tiger.png",
+                        "type": "Str",
+                        "value": "tiger.png",
+                      },
+                    ],
+                    "loc": Object {
+                      "end": Object {
+                        "column": 16,
+                        "line": 113,
+                      },
+                      "start": Object {
+                        "column": 7,
+                        "line": 113,
+                      },
+                    },
+                    "name": "target",
+                    "range": Array [
+                      1786,
+                      1795,
+                    ],
+                    "raw": "tiger.png",
+                    "type": "Attribute",
+                  },
+                ],
+                Object {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 31,
+                      "line": 113,
+                    },
+                    "start": Object {
+                      "column": 0,
+                      "line": 113,
+                    },
+                  },
+                  "range": Array [
+                    1779,
+                    1810,
+                  ],
+                  "raw": "image::tiger.png[Tiger,200,200]",
+                  "type": "Str",
+                  "value": "image::tiger.png[Tiger,200,200]",
+                },
+              ],
+              "loc": Object {
+                "end": Object {
+                  "column": 31,
+                  "line": 113,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 113,
+                },
+              },
+              "range": Array [
+                1779,
+                1810,
+              ],
+              "raw": "image::tiger.png[Tiger,200,200]",
+              "type": "Image",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 31,
+              "line": 113,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 113,
+            },
+          },
+          "range": Array [
+            1779,
+            1810,
           ],
           "raw": "",
           "type": "ListItem",
