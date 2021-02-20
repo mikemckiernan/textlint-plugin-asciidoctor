@@ -137,6 +137,8 @@ class Converter {
   }
 
   convertParagraph(elem, lineno) {
+    let children = [];
+
     const raw = elem.$source();
     const loc = this.findLocation(elem.$lines(), {
       ...lineno,
@@ -146,15 +148,21 @@ class Converter {
       return [];
     }
     const range = this.locationToRange(loc);
-    return [
-      {
-        type: "Paragraph",
-        children: [{ type: "Str", value: raw, loc, range, raw }],
-        loc,
-        range,
-        raw
-      }
-    ];
+
+    const title = this.getBlockTitle(elem, lineno);
+    if ("type" in title) {
+      children = [title];
+    }
+
+    children = [...children, { type: "Str", value: raw, loc, range, raw }];
+
+    const obj = {
+      type: "Paragraph",
+      children: children,
+      raw,
+      ...this.locAndRangeFrom(children)
+    };
+    return obj;
   }
 
   convertQuote(elem, lineno) {
@@ -791,31 +799,9 @@ class Converter {
 
   // This is nearly identical to convertSection.
   convertSidebar(elem, lineno) {
-    let title = {};
-
-    if (elem.hasTitle()) {
-      const raw = "." + elem.getTitle();
-      const loc = this.findLocationBackward(
-        [raw],
-        {
-          ...lineno,
-          type: "Header"
-        },
-        2 /* Look backward at most two lines. */
-      );
-      const range = this.locationToRange(loc);
-      title = {
-        type: "Header",
-        depth: elem.level,
-        children: [{ type: "Str", value: elem.title, loc, range, raw }],
-        loc,
-        range,
-        raw
-      };
-    }
-
     let children = this.convertElementList(elem.$blocks(), lineno);
 
+    const title = this.getBlockTitle(elem, lineno);
     if ("type" in title) {
       children = [title, ...children];
     }

@@ -2724,10 +2724,9 @@ And this is the preamble of this document.",
               ],
               "raw": ".Purpose",
               "type": "Str",
-              "value": "Purpose",
+              "value": ".Purpose",
             },
           ],
-          "depth": 0,
           "loc": Object {
             "end": Object {
               "column": 8,
@@ -2743,7 +2742,7 @@ And this is the preamble of this document.",
             756,
           ],
           "raw": ".Purpose",
-          "type": "Header",
+          "type": "BlockTitle",
         },
         Object {
           "children": Array [
@@ -4649,6 +4648,45 @@ and continue typing on the next line.",
     Object {
       "children": Array [
         Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 10,
+                  "line": 100,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 100,
+                },
+              },
+              "range": Array [
+                2943,
+                2953,
+              ],
+              "raw": ".Statement",
+              "type": "Str",
+              "value": ".Statement",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 10,
+              "line": 100,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 100,
+            },
+          },
+          "range": Array [
+            2943,
+            2953,
+          ],
+          "raw": ".Statement",
+          "type": "BlockTitle",
+        },
+        Object {
           "loc": Object {
             "end": Object {
               "column": 57,
@@ -4675,11 +4713,11 @@ and continue typing on the next line.",
         },
         "start": Object {
           "column": 0,
-          "line": 101,
+          "line": 100,
         },
       },
       "range": Array [
-        2954,
+        2943,
         3011,
       ],
       "raw": "I swear I left it in _Guy\\\\'s_ car. Let\\\\'s go look for it.",
