@@ -485,6 +485,20 @@ test("simple table with identical cell text", () => {
   ]);
 });
 
+test("table with title and attributes", () => {
+  const node = parse(`\
+.Table title
+[cols="1a,2a"]
+|===
+|A |B
+|===
+`);
+  testAST(node);
+  expect(node.children[0].type === "Table");
+  expect(node.children[0].children[0].type).toEqual("BlockTitle");
+  expect(node.children[0].children[1].type).toEqual("Attributes");
+});
+
 test("complex table", () => {
   const node = parse(`\
 |===

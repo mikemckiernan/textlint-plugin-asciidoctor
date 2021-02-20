@@ -330,31 +330,15 @@ class Converter {
   convertTable(elem, lineno) {
     let children = [];
 
-    if (typeof elem.title === "string") {
-      // FIXME - 3
-      const raw = elem.title;
-      const loc = this.findLocationBackward(
-        [raw],
-        {
-          ...lineno,
-          type: "Header"
-        },
-        5
-      );
-      const range = this.locationToRange(loc);
-      children.push({
-        type: "Header",
-        depth: 0,
-        children: [{ type: "Str", value: raw, loc, range, raw }],
-        loc,
-        range,
-        raw
-      });
+    const attrs = this.getTableAttributes(elem, lineno);
+    if ("type" in attrs) {
+      //children.push(attrs[0]); // FIXME: Return the correct type.
+      children = [attrs, ...children];
     }
 
-    const attrs = this.getTableAttributes(elem, lineno);
-    if (attrs.length > 0) {
-      children.push(attrs[0]); // FIXME: Return the correct type.
+    const title = this.getBlockTitle(elem, lineno);
+    if ("type" in title) {
+      children = [title, ...children];
     }
 
     // Check for a header option.
@@ -570,15 +554,15 @@ class Converter {
     loc.end.column = attrs.length;
     const range = this.locationToRange(loc);
 
-    return [
-      {
-        type: "Attributes",
-        children: [{ type: "Str", value: attrs, loc, range, raw: attrs }],
-        loc,
-        range,
-        raw: attrs
-      }
-    ];
+    const obj = {
+      type: "Attributes",
+      children: [{ type: "Str", value: attrs, loc, range, raw: attrs }],
+      loc,
+      range,
+      raw: attrs
+    };
+
+    return obj;
   }
 
   convertAuthors(elem, lineno) {
@@ -784,7 +768,7 @@ class Converter {
         ...lineno,
         type: "Attribute"
       },
-      2 /* Look backward at most two lines. */
+      3 /* Look backward at most three lines. */
     );
     if (!loc || typeof raw === "undefined") {
       return [];
