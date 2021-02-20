@@ -717,11 +717,7 @@ class Converter {
       children = [attrs, ...children];
     }
 
-    // The block title is on an earlier line than the image.
-    let tmpLineno = lineno;
-    tmpLineno.min = Math.max(1, lineno.min - 2);
-    const title = this.getBlockTitle(elem, tmpLineno);
-
+    const title = this.getBlockTitle(elem, lineno);
     if ("type" in title) {
       children = [title, ...children];
     }
@@ -771,10 +767,14 @@ class Converter {
 
     const line = elem.getSourceLocation().lineno - 1;
     const raw = "." + elem.getTitle();
-    const loc = this.findLocation([raw], {
-      ...lineno,
-      type: "Attribute"
-    });
+    const loc = this.findLocationBackward(
+      [raw],
+      {
+        ...lineno,
+        type: "Attribute"
+      },
+      2 /* Look backward at most two lines. */
+    );
     if (!loc || typeof raw === "undefined") {
       return [];
     }
@@ -795,9 +795,14 @@ class Converter {
 
     if (elem.hasTitle()) {
       const raw = "." + elem.getTitle();
-      var tmpLineno = lineno;
-      tmpLineno.min = Math.max(1, lineno.min - 1);
-      const loc = this.findLocation([raw], { ...tmpLineno, type: "Header" });
+      const loc = this.findLocationBackward(
+        [raw],
+        {
+          ...lineno,
+          type: "Header"
+        },
+        2 /* Look backward at most two lines. */
+      );
       const range = this.locationToRange(loc);
       title = {
         type: "Header",
