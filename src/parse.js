@@ -333,11 +333,14 @@ class Converter {
     if (typeof elem.title === "string") {
       // FIXME - 3
       const raw = elem.title;
-      const loc = this.findLocation([raw], {
-        min: Math.max(1, lineno.min - 3),
-        max: lineno.min,
-        type: "Header"
-      });
+      const loc = this.findLocationBackward(
+        [raw],
+        {
+          ...lineno,
+          type: "Header"
+        },
+        5
+      );
       const range = this.locationToRange(loc);
       children.push({
         type: "Header",
