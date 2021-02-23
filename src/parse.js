@@ -28,6 +28,8 @@ class Converter {
   convertElement(elem, lineno) {
     if (elem.context === "document") {
       return this.convertDocument(elem, lineno);
+    } else if (elem.context === "admonition") {
+      return this.convertAdmonition(elem, lineno);
     } else if (["paragraph", "literal"].includes(elem.context)) {
       return this.convertParagraph(elem, lineno);
     } else if (["ulist", "olist", "colist"].includes(elem.context)) {
@@ -52,7 +54,7 @@ class Converter {
       return this.convertToc(elem, lineno);
     } else if (elem.context === "preamble") {
       return this.convertElementList(elem.getBlocks(), lineno);
-    } else if (["admonition", "example"].includes(elem.context)) {
+    } else if (["example"].includes(elem.context)) {
       return this.convertElementList(elem.$blocks(), {
         ...lineno,
         update: false
@@ -89,6 +91,25 @@ class Converter {
     };
     const range = this.locationToRange(loc);
     return [{ type: "Document", children, loc, range, raw }];
+  }
+
+  // This is nearly identical to convertSection.
+  convertAdmonition(elem, lineno) {
+    let children = this.convertElementList(elem.$blocks(), lineno);
+
+    const title = this.getBlockTitle(elem, lineno);
+    if ("type" in title) {
+      children = [title, ...children];
+    }
+
+    const obj = {
+      type: "Admonition",
+      style: elem.getStyle(),
+      children: children,
+      raw: "",
+      ...this.locAndRangeFrom(children)
+    };
+    return obj;
   }
 
   convertHeader(elem, lineno) {

@@ -554,9 +554,10 @@ text
 `);
 
   testAST(node);
-  expect(node.children).toEqual([
-    oc({ children: [oc({ type: "Str", value: "text" })] })
-  ]);
+  expect(node.children[0].type).toEqual("Admonition");
+  expect(node.children[0].type).not.toEqual("CodeBlock");
+  expect(node.children[0].style).toEqual("WARNING");
+  expect(node.children[0].children[0].type === "Paragraph");
 });
 
 test("example", () => {
