@@ -192,6 +192,69 @@ writing simple sectionless documents consisting only of a preamble.",
     Object {
       "children": Array [
         Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 57,
+                  "line": 13,
+                },
+                "start": Object {
+                  "column": 6,
+                  "line": 12,
+                },
+              },
+              "range": Array [
+                337,
+                454,
+              ],
+              "raw": "The abstract, preface, appendix, bibliography, glossary and
+index section titles are significant ('specialsections').",
+              "type": "Str",
+              "value": "The abstract, preface, appendix, bibliography, glossary and
+index section titles are significant ('specialsections').",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 57,
+              "line": 13,
+            },
+            "start": Object {
+              "column": 6,
+              "line": 12,
+            },
+          },
+          "range": Array [
+            337,
+            454,
+          ],
+          "raw": "The abstract, preface, appendix, bibliography, glossary and
+index section titles are significant ('specialsections').",
+          "type": "Paragraph",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 57,
+          "line": 13,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 12,
+        },
+      },
+      "range": Array [
+        337,
+        454,
+      ],
+      "raw": "",
+      "style": "NOTE",
+      "type": "Admonition",
+    },
+    Object {
+      "children": Array [
+        Object {
           "loc": Object {
             "end": Object {
               "column": 16,
@@ -2799,6 +2862,66 @@ And this is the preamble of this document.",
       ],
       "raw": "",
       "type": "Sidebar",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 153,
+                  "line": 42,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 42,
+                },
+              },
+              "range": Array [
+                868,
+                1016,
+              ],
+              "raw": "If you want the HTML to have the familiar AsciiDoc Python style, load the asciidoc.css stylesheet using the CLI option \`-a stylesheet=asciidoc.css\`.",
+              "type": "Str",
+              "value": "If you want the HTML to have the familiar AsciiDoc Python style, load the asciidoc.css stylesheet using the CLI option \`-a stylesheet=asciidoc.css\`.",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 153,
+              "line": 42,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 42,
+            },
+          },
+          "range": Array [
+            868,
+            1016,
+          ],
+          "raw": "If you want the HTML to have the familiar AsciiDoc Python style, load the asciidoc.css stylesheet using the CLI option \`-a stylesheet=asciidoc.css\`.",
+          "type": "Paragraph",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 153,
+          "line": 42,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 42,
+        },
+      },
+      "range": Array [
+        868,
+        1016,
+      ],
+      "raw": "",
+      "style": "TIP",
+      "type": "Admonition",
     },
     Object {
       "children": Array [
@@ -6761,6 +6884,126 @@ however improbable, must be the truth.",
     Object {
       "children": Array [
         Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 48,
+                  "line": 237,
+                },
+                "start": Object {
+                  "column": 6,
+                  "line": 237,
+                },
+              },
+              "range": Array [
+                5530,
+                5572,
+              ],
+              "raw": "AsciiDoc is quite cool, you should try it!",
+              "type": "Str",
+              "value": "AsciiDoc is quite cool, you should try it!",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 48,
+              "line": 237,
+            },
+            "start": Object {
+              "column": 6,
+              "line": 237,
+            },
+          },
+          "range": Array [
+            5530,
+            5572,
+          ],
+          "raw": "AsciiDoc is quite cool, you should try it!",
+          "type": "Paragraph",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 48,
+          "line": 237,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 237,
+        },
+      },
+      "range": Array [
+        5530,
+        5572,
+      ],
+      "raw": "",
+      "style": "NOTE",
+      "type": "Admonition",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 5,
+                  "line": 240,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 240,
+                },
+              },
+              "range": Array [
+                5580,
+                5585,
+              ],
+              "raw": ".Info",
+              "type": "Str",
+              "value": ".Info",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 5,
+              "line": 240,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 240,
+            },
+          },
+          "range": Array [
+            5580,
+            5585,
+          ],
+          "raw": ".Info",
+          "type": "BlockTitle",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 38,
+                  "line": 242,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 242,
+                },
+              },
+              "range": Array [
+                5592,
+                5630,
+              ],
+              "raw": "Go to this URL to learn more about it:",
+              "type": "Str",
+              "value": "Go to this URL to learn more about it:",
+            },
+          ],
           "loc": Object {
             "end": Object {
               "column": 38,
@@ -6776,34 +7019,34 @@ however improbable, must be the truth.",
             5630,
           ],
           "raw": "Go to this URL to learn more about it:",
-          "type": "Str",
-          "value": "Go to this URL to learn more about it:",
+          "type": "Paragraph",
         },
-      ],
-      "loc": Object {
-        "end": Object {
-          "column": 38,
-          "line": 242,
-        },
-        "start": Object {
-          "column": 0,
-          "line": 242,
-        },
-      },
-      "range": Array [
-        5592,
-        5630,
-      ],
-      "raw": "Go to this URL to learn more about it:",
-      "type": "Paragraph",
-    },
-    Object {
-      "children": Array [
         Object {
           "children": Array [
             Object {
               "children": Array [
                 Object {
+                  "children": Array [
+                    Object {
+                      "loc": Object {
+                        "end": Object {
+                          "column": 21,
+                          "line": 244,
+                        },
+                        "start": Object {
+                          "column": 2,
+                          "line": 244,
+                        },
+                      },
+                      "range": Array [
+                        5634,
+                        5653,
+                      ],
+                      "raw": "http://asciidoc.org",
+                      "type": "Str",
+                      "value": "http://asciidoc.org",
+                    },
+                  ],
                   "loc": Object {
                     "end": Object {
                       "column": 21,
@@ -6819,8 +7062,7 @@ however improbable, must be the truth.",
                     5653,
                   ],
                   "raw": "http://asciidoc.org",
-                  "type": "Str",
-                  "value": "http://asciidoc.org",
+                  "type": "Paragraph",
                 },
               ],
               "loc": Object {
@@ -6837,8 +7079,8 @@ however improbable, must be the truth.",
                 5634,
                 5653,
               ],
-              "raw": "http://asciidoc.org",
-              "type": "Paragraph",
+              "raw": "",
+              "type": "ListItem",
             },
           ],
           "loc": Object {
@@ -6856,29 +7098,30 @@ however improbable, must be the truth.",
             5653,
           ],
           "raw": "",
-          "type": "ListItem",
+          "type": "List",
         },
-      ],
-      "loc": Object {
-        "end": Object {
-          "column": 21,
-          "line": 244,
-        },
-        "start": Object {
-          "column": 2,
-          "line": 244,
-        },
-      },
-      "range": Array [
-        5634,
-        5653,
-      ],
-      "raw": "",
-      "type": "List",
-    },
-    Object {
-      "children": Array [
         Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 83,
+                  "line": 246,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 246,
+                },
+              },
+              "range": Array [
+                5655,
+                5738,
+              ],
+              "raw": "Or you could return to the xref:first-steps-with-asciidoc[] or <<purpose,Purpose>>.",
+              "type": "Str",
+              "value": "Or you could return to the xref:first-steps-with-asciidoc[] or <<purpose,Purpose>>.",
+            },
+          ],
           "loc": Object {
             "end": Object {
               "column": 83,
@@ -6894,8 +7137,7 @@ however improbable, must be the truth.",
             5738,
           ],
           "raw": "Or you could return to the xref:first-steps-with-asciidoc[] or <<purpose,Purpose>>.",
-          "type": "Str",
-          "value": "Or you could return to the xref:first-steps-with-asciidoc[] or <<purpose,Purpose>>.",
+          "type": "Paragraph",
         },
       ],
       "loc": Object {
@@ -6905,15 +7147,16 @@ however improbable, must be the truth.",
         },
         "start": Object {
           "column": 0,
-          "line": 246,
+          "line": 240,
         },
       },
       "range": Array [
-        5655,
+        5580,
         5738,
       ],
-      "raw": "Or you could return to the xref:first-steps-with-asciidoc[] or <<purpose,Purpose>>.",
-      "type": "Paragraph",
+      "raw": "",
+      "style": "TIP",
+      "type": "Admonition",
     },
     Object {
       "children": Array [
@@ -6953,6 +7196,66 @@ however improbable, must be the truth.",
       ],
       "raw": "Here's a reference to the definition of <<another_term>>, in case you forgot it.",
       "type": "Paragraph",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 252,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 252,
+                },
+              },
+              "range": Array [
+                5835,
+                5869,
+              ],
+              "raw": "One more thing. Happy documenting!",
+              "type": "Str",
+              "value": "One more thing. Happy documenting!",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 34,
+              "line": 252,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 252,
+            },
+          },
+          "range": Array [
+            5835,
+            5869,
+          ],
+          "raw": "One more thing. Happy documenting!",
+          "type": "Paragraph",
+        },
+      ],
+      "loc": Object {
+        "end": Object {
+          "column": 34,
+          "line": 252,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 252,
+        },
+      },
+      "range": Array [
+        5835,
+        5869,
+      ],
+      "raw": "",
+      "style": "NOTE",
+      "type": "Admonition",
     },
     Object {
       "children": Array [
@@ -9958,6 +10261,89 @@ It also has some examples to show off the available features in the GitHub envir
           "range": Array [
             1423,
             1441,
+          ],
+          "raw": "",
+          "type": "ListItem",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "children": Array [
+                Object {
+                  "children": Array [
+                    Object {
+                      "loc": Object {
+                        "end": Object {
+                          "column": 49,
+                          "line": 97,
+                        },
+                        "start": Object {
+                          "column": 5,
+                          "line": 96,
+                        },
+                      },
+                      "range": Array [
+                        1451,
+                        1605,
+                      ],
+                      "raw": "The icon is enabled on this tip by setting the \`tip-caption\` attribute to the emoji short code \`:bulb:\`.
+You can do the same for all the admonition types.",
+                      "type": "Str",
+                      "value": "The icon is enabled on this tip by setting the \`tip-caption\` attribute to the emoji short code \`:bulb:\`.
+You can do the same for all the admonition types.",
+                    },
+                  ],
+                  "loc": Object {
+                    "end": Object {
+                      "column": 49,
+                      "line": 97,
+                    },
+                    "start": Object {
+                      "column": 5,
+                      "line": 96,
+                    },
+                  },
+                  "range": Array [
+                    1451,
+                    1605,
+                  ],
+                  "raw": "The icon is enabled on this tip by setting the \`tip-caption\` attribute to the emoji short code \`:bulb:\`.
+You can do the same for all the admonition types.",
+                  "type": "Paragraph",
+                },
+              ],
+              "loc": Object {
+                "end": Object {
+                  "column": 49,
+                  "line": 97,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 96,
+                },
+              },
+              "range": Array [
+                1451,
+                1605,
+              ],
+              "raw": "",
+              "style": "TIP",
+              "type": "Admonition",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 49,
+              "line": 97,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 96,
+            },
+          },
+          "range": Array [
+            1451,
+            1605,
           ],
           "raw": "",
           "type": "ListItem",

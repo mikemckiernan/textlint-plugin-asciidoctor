@@ -95,10 +95,21 @@ class Converter {
 
   // This is nearly identical to convertSection.
   convertAdmonition(elem, lineno) {
-    let children = this.convertElementList(elem.$blocks(), lineno);
+    let children = [];
+    if (elem.hasBlocks()) {
+      children = this.convertElementList(elem.getBlocks(), lineno);
+    } else {
+      if (elem.lines[0].length < 1) {
+        throw Error(
+          "Found an admonition without a block and without a paragraph: ",
+          lineno.min
+        );
+      }
+      children = this.createParagraph(elem.lines.join("\n"), lineno);
+    }
 
-    const title = this.getBlockTitle(elem, lineno);
-    if ("type" in title) {
+    if (elem.hasTitle()) {
+      const title = this.getBlockTitle(elem, lineno);
       children = [title, ...children];
     }
 
