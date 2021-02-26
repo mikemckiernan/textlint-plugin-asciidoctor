@@ -237,13 +237,20 @@ class Converter {
 
   convertList(elem, lineno) {
     const raw = ""; // TODO: fix asciidoc/asciidoc
-    const children = this.convertElementList(elem.$blocks(), {
+    const children = this.convertElementList(elem.getBlocks(), {
       ...lineno,
       update: false
     });
     if (children.length === 0) {
       return [];
     }
+
+    if (elem.hasTitle()) {
+      const title = this.getBlockTitle(elem, lineno);
+      //children = [title, ...children];
+      children.unshift(title);
+    }
+
     return [{ type: "List", children, raw, ...this.locAndRangeFrom(children) }];
   }
 

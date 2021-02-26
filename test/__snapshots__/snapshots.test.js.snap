@@ -2968,6 +2968,45 @@ And this is the preamble of this document.",
         Object {
           "children": Array [
             Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 46,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 46,
+                },
+              },
+              "range": Array [
+                1048,
+                1062,
+              ],
+              "raw": ".Inline markup",
+              "type": "Str",
+              "value": ".Inline markup",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 46,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 46,
+            },
+          },
+          "range": Array [
+            1048,
+            1062,
+          ],
+          "raw": ".Inline markup",
+          "type": "BlockTitle",
+        },
+        Object {
+          "children": Array [
+            Object {
               "children": Array [
                 Object {
                   "loc": Object {
@@ -3385,12 +3424,12 @@ And this is the preamble of this document.",
           "line": 53,
         },
         "start": Object {
-          "column": 2,
-          "line": 47,
+          "column": 0,
+          "line": 46,
         },
       },
       "range": Array [
-        1065,
+        1048,
         1540,
       ],
       "raw": "",
@@ -4043,6 +4082,45 @@ and continue typing on the next line.",
         Object {
           "children": Array [
             Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 77,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 77,
+                },
+              },
+              "range": Array [
+                2661,
+                2676,
+              ],
+              "raw": ".Adjacent lists",
+              "type": "Str",
+              "value": ".Adjacent lists",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 77,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 77,
+            },
+          },
+          "range": Array [
+            2661,
+            2676,
+          ],
+          "raw": ".Adjacent lists",
+          "type": "BlockTitle",
+        },
+        Object {
+          "children": Array [
+            Object {
               "children": Array [
                 Object {
                   "loc": Object {
@@ -4283,12 +4361,12 @@ and continue typing on the next line.",
           "line": 82,
         },
         "start": Object {
-          "column": 2,
-          "line": 78,
+          "column": 0,
+          "line": 77,
         },
       },
       "range": Array [
-        2679,
+        2661,
         2726,
       ],
       "raw": "",
@@ -4296,6 +4374,45 @@ and continue typing on the next line.",
     },
     Object {
       "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 91,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 91,
+                },
+              },
+              "range": Array [
+                2814,
+                2828,
+              ],
+              "raw": ".Ordered lists",
+              "type": "Str",
+              "value": ".Ordered lists",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 91,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 91,
+            },
+          },
+          "range": Array [
+            2814,
+            2828,
+          ],
+          "raw": ".Ordered lists",
+          "type": "BlockTitle",
+        },
         Object {
           "children": Array [
             Object {
@@ -4756,12 +4873,12 @@ and continue typing on the next line.",
           "line": 98,
         },
         "start": Object {
-          "column": 2,
-          "line": 92,
+          "column": 0,
+          "line": 91,
         },
       },
       "range": Array [
-        2831,
+        2814,
         2941,
       ],
       "raw": "",

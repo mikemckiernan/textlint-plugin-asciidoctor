@@ -90,6 +90,13 @@ test("unordered list", () => {
   expect(node.children[0].children[0]).toEqual(expected);
 });
 
+test("unordered list with block title", () => {
+  const node = parse(".List title\n\n* One\n\n* Two");
+  testAST(node);
+  expect(node.children[0].type).toEqual("List");
+  expect(node.children[0].children[0].type).toEqual("BlockTitle");
+});
+
 test("nested unordered list", () => {
   const node = parse(`\
 * value 1
