@@ -60,8 +60,8 @@ class Converter {
         update: false
       });
     } else {
-      //console.error("need to handle element: " + elem.context);
-      //process.exit(1);
+      // console.error("need to handle element: " + elem.context);
+      // process.exit(1);
     }
     return [];
   }
@@ -212,6 +212,8 @@ class Converter {
   }
 
   convertListing(elem, lineno) {
+    let children = [];
+
     const raw = elem.$source();
     const loc = this.findLocation(elem.$lines(), {
       ...lineno,
@@ -223,10 +225,17 @@ class Converter {
     const range = this.locationToRange(loc);
     const attributes =
       typeof elem.getAttributes === "function" ? elem.getAttributes() : {};
+
+    const title = this.getBlockTitle(elem, lineno);
+    if ("type" in title) {
+      children = [title];
+    }
+
     return [
       {
         type: "CodeBlock",
         lang: attributes.language,
+        children: children,
         value: raw,
         loc,
         range,

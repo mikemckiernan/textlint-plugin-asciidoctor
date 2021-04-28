@@ -2630,6 +2630,7 @@ Object {
       "type": "Paragraph",
     },
     Object {
+      "children": Array [],
       "lang": "javascript",
       "loc": Object {
         "end": Object {
@@ -6194,6 +6195,47 @@ first level",
       "type": "Image",
     },
     Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 63,
+                  "line": 157,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 157,
+                },
+              },
+              "range": Array [
+                3775,
+                3838,
+              ],
+              "raw": ".Asciidoctor usage example. The listing should contain 5 lines.",
+              "type": "Str",
+              "value": ".Asciidoctor usage example. The listing should contain 5 lines.",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 63,
+              "line": 157,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 157,
+            },
+          },
+          "range": Array [
+            3775,
+            3838,
+          ],
+          "raw": ".Asciidoctor usage example. The listing should contain 5 lines.",
+          "type": "BlockTitle",
+        },
+      ],
       "lang": "ruby",
       "loc": Object {
         "end": Object {
@@ -6222,6 +6264,47 @@ doc = Asciidoctor.load '*This* is http://asciidoc.org[AsciiDoc]!', header_footer
 puts doc.convert",
     },
     Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 168,
+                },
+                "start": Object {
+                  "column": 0,
+                  "line": 168,
+                },
+              },
+              "range": Array [
+                4055,
+                4091,
+              ],
+              "raw": ".Output of Asciidoctor usage example",
+              "type": "Str",
+              "value": ".Output of Asciidoctor usage example",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 36,
+              "line": 168,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 168,
+            },
+          },
+          "range": Array [
+            4055,
+            4091,
+          ],
+          "raw": ".Output of Asciidoctor usage example",
+          "type": "BlockTitle",
+        },
+      ],
       "lang": "html",
       "loc": Object {
         "end": Object {
@@ -10763,6 +10846,47 @@ You can do the same for all the admonition types.",
         Object {
           "children": Array [
             Object {
+              "children": Array [
+                Object {
+                  "children": Array [
+                    Object {
+                      "loc": Object {
+                        "end": Object {
+                          "column": 10,
+                          "line": 107,
+                        },
+                        "start": Object {
+                          "column": 0,
+                          "line": 107,
+                        },
+                      },
+                      "range": Array [
+                        1700,
+                        1710,
+                      ],
+                      "raw": ".Ruby code",
+                      "type": "Str",
+                      "value": ".Ruby code",
+                    },
+                  ],
+                  "loc": Object {
+                    "end": Object {
+                      "column": 10,
+                      "line": 107,
+                    },
+                    "start": Object {
+                      "column": 0,
+                      "line": 107,
+                    },
+                  },
+                  "range": Array [
+                    1700,
+                    1710,
+                  ],
+                  "raw": ".Ruby code",
+                  "type": "BlockTitle",
+                },
+              ],
               "lang": "ruby",
               "loc": Object {
                 "end": Object {

@@ -602,3 +602,23 @@ test("literal", () => {
     })
   ]);
 });
+
+test("block title", () => {
+  const node = parse(`
+.Some title
+[source]
+----
+Something.
+----
+`);
+  testAST(node);
+  expect(node.children[0].type).toEqual("CodeBlock");
+  expect(node.children[0].lang).toBeUndefined();
+  expect(node.children[0].value).toEqual("Something.");
+
+  expect(node.children[0].children[0].type).toEqual("BlockTitle");
+  expect(node.children[0].children[0].raw).toEqual(".Some title");
+
+  expect(node.children[0].children[0].children[0].type).toEqual("Str");
+  expect(node.children[0].children[0].children[0].value).toEqual(".Some title");
+});
