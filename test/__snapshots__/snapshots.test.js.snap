@@ -604,88 +604,86 @@ example inline image followed by an example block image:",
           "raw": ".Tiger block image",
           "type": "BlockTitle",
         },
-        Array [
-          Object {
-            "children": Array [
-              Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 28,
-                    "line": 46,
-                  },
-                  "start": Object {
-                    "column": 17,
-                    "line": 46,
-                  },
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 46,
                 },
-                "range": Array [
-                  1359,
-                  1370,
-                ],
-                "raw": "Tiger image",
-                "type": "Str",
-                "value": "Tiger image",
-              },
-            ],
-            "loc": Object {
-              "end": Object {
-                "column": 28,
-                "line": 46,
-              },
-              "start": Object {
-                "column": 17,
-                "line": 46,
-              },
-            },
-            "name": "alt",
-            "range": Array [
-              1359,
-              1370,
-            ],
-            "raw": "Tiger image",
-            "type": "Attribute",
-          },
-          Object {
-            "children": Array [
-              Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 16,
-                    "line": 46,
-                  },
-                  "start": Object {
-                    "column": 7,
-                    "line": 46,
-                  },
+                "start": Object {
+                  "column": 17,
+                  "line": 46,
                 },
-                "range": Array [
-                  1349,
-                  1358,
-                ],
-                "raw": "tiger.png",
-                "type": "Str",
-                "value": "tiger.png",
               },
-            ],
-            "loc": Object {
-              "end": Object {
-                "column": 16,
-                "line": 46,
-              },
-              "start": Object {
-                "column": 7,
-                "line": 46,
-              },
+              "range": Array [
+                1359,
+                1370,
+              ],
+              "raw": "Tiger image",
+              "type": "Str",
+              "value": "Tiger image",
             },
-            "name": "target",
-            "range": Array [
-              1349,
-              1358,
-            ],
-            "raw": "tiger.png",
-            "type": "Attribute",
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 28,
+              "line": 46,
+            },
+            "start": Object {
+              "column": 17,
+              "line": 46,
+            },
           },
-        ],
+          "name": "alt",
+          "range": Array [
+            1359,
+            1370,
+          ],
+          "raw": "Tiger image",
+          "type": "Attribute",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 46,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 46,
+                },
+              },
+              "range": Array [
+                1349,
+                1358,
+              ],
+              "raw": "tiger.png",
+              "type": "Str",
+              "value": "tiger.png",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 16,
+              "line": 46,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 46,
+            },
+          },
+          "name": "target",
+          "range": Array [
+            1349,
+            1358,
+          ],
+          "raw": "tiger.png",
+          "type": "Attribute",
+        },
         Object {
           "loc": Object {
             "end": Object {
@@ -6075,88 +6073,86 @@ first level",
           "raw": ".Tiger in a box",
           "type": "BlockTitle",
         },
-        Array [
-          Object {
-            "children": Array [
-              Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 12,
-                    "line": 153,
-                  },
-                  "start": Object {
-                    "column": 7,
-                    "line": 153,
-                  },
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 153,
                 },
-                "range": Array [
-                  3737,
-                  3742,
-                ],
-                "raw": "tiger",
-                "type": "Str",
-                "value": "tiger",
-              },
-            ],
-            "loc": Object {
-              "end": Object {
-                "column": 12,
-                "line": 153,
-              },
-              "start": Object {
-                "column": 7,
-                "line": 153,
-              },
-            },
-            "name": "alt",
-            "range": Array [
-              3737,
-              3742,
-            ],
-            "raw": "tiger",
-            "type": "Attribute",
-          },
-          Object {
-            "children": Array [
-              Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 16,
-                    "line": 153,
-                  },
-                  "start": Object {
-                    "column": 7,
-                    "line": 153,
-                  },
+                "start": Object {
+                  "column": 7,
+                  "line": 153,
                 },
-                "range": Array [
-                  3737,
-                  3746,
-                ],
-                "raw": "tiger.png",
-                "type": "Str",
-                "value": "tiger.png",
               },
-            ],
-            "loc": Object {
-              "end": Object {
-                "column": 16,
-                "line": 153,
-              },
-              "start": Object {
-                "column": 7,
-                "line": 153,
-              },
+              "range": Array [
+                3737,
+                3742,
+              ],
+              "raw": "tiger",
+              "type": "Str",
+              "value": "tiger",
             },
-            "name": "target",
-            "range": Array [
-              3737,
-              3746,
-            ],
-            "raw": "tiger.png",
-            "type": "Attribute",
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 12,
+              "line": 153,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 153,
+            },
           },
-        ],
+          "name": "alt",
+          "range": Array [
+            3737,
+            3742,
+          ],
+          "raw": "tiger",
+          "type": "Attribute",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "loc": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 153,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 153,
+                },
+              },
+              "range": Array [
+                3737,
+                3746,
+              ],
+              "raw": "tiger.png",
+              "type": "Str",
+              "value": "tiger.png",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 16,
+              "line": 153,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 153,
+            },
+          },
+          "name": "target",
+          "range": Array [
+            3737,
+            3746,
+          ],
+          "raw": "tiger.png",
+          "type": "Attribute",
+        },
         Object {
           "loc": Object {
             "end": Object {
@@ -10987,88 +10983,86 @@ You can do the same for all the admonition types.",
           "children": Array [
             Object {
               "children": Array [
-                Array [
-                  Object {
-                    "children": Array [
-                      Object {
-                        "loc": Object {
-                          "end": Object {
-                            "column": 22,
-                            "line": 113,
-                          },
-                          "start": Object {
-                            "column": 17,
-                            "line": 113,
-                          },
+                Object {
+                  "children": Array [
+                    Object {
+                      "loc": Object {
+                        "end": Object {
+                          "column": 22,
+                          "line": 113,
                         },
-                        "range": Array [
-                          1796,
-                          1801,
-                        ],
-                        "raw": "Tiger",
-                        "type": "Str",
-                        "value": "Tiger",
-                      },
-                    ],
-                    "loc": Object {
-                      "end": Object {
-                        "column": 22,
-                        "line": 113,
-                      },
-                      "start": Object {
-                        "column": 17,
-                        "line": 113,
-                      },
-                    },
-                    "name": "alt",
-                    "range": Array [
-                      1796,
-                      1801,
-                    ],
-                    "raw": "Tiger",
-                    "type": "Attribute",
-                  },
-                  Object {
-                    "children": Array [
-                      Object {
-                        "loc": Object {
-                          "end": Object {
-                            "column": 16,
-                            "line": 113,
-                          },
-                          "start": Object {
-                            "column": 7,
-                            "line": 113,
-                          },
+                        "start": Object {
+                          "column": 17,
+                          "line": 113,
                         },
-                        "range": Array [
-                          1786,
-                          1795,
-                        ],
-                        "raw": "tiger.png",
-                        "type": "Str",
-                        "value": "tiger.png",
                       },
-                    ],
-                    "loc": Object {
-                      "end": Object {
-                        "column": 16,
-                        "line": 113,
-                      },
-                      "start": Object {
-                        "column": 7,
-                        "line": 113,
-                      },
+                      "range": Array [
+                        1796,
+                        1801,
+                      ],
+                      "raw": "Tiger",
+                      "type": "Str",
+                      "value": "Tiger",
                     },
-                    "name": "target",
-                    "range": Array [
-                      1786,
-                      1795,
-                    ],
-                    "raw": "tiger.png",
-                    "type": "Attribute",
+                  ],
+                  "loc": Object {
+                    "end": Object {
+                      "column": 22,
+                      "line": 113,
+                    },
+                    "start": Object {
+                      "column": 17,
+                      "line": 113,
+                    },
                   },
-                ],
+                  "name": "alt",
+                  "range": Array [
+                    1796,
+                    1801,
+                  ],
+                  "raw": "Tiger",
+                  "type": "Attribute",
+                },
+                Object {
+                  "children": Array [
+                    Object {
+                      "loc": Object {
+                        "end": Object {
+                          "column": 16,
+                          "line": 113,
+                        },
+                        "start": Object {
+                          "column": 7,
+                          "line": 113,
+                        },
+                      },
+                      "range": Array [
+                        1786,
+                        1795,
+                      ],
+                      "raw": "tiger.png",
+                      "type": "Str",
+                      "value": "tiger.png",
+                    },
+                  ],
+                  "loc": Object {
+                    "end": Object {
+                      "column": 16,
+                      "line": 113,
+                    },
+                    "start": Object {
+                      "column": 7,
+                      "line": 113,
+                    },
+                  },
+                  "name": "target",
+                  "range": Array [
+                    1786,
+                    1795,
+                  ],
+                  "raw": "tiger.png",
+                  "type": "Attribute",
+                },
                 Object {
                   "loc": Object {
                     "end": Object {

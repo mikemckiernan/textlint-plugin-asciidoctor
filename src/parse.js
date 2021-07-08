@@ -256,7 +256,6 @@ class Converter {
 
     if (elem.hasTitle()) {
       const title = this.getBlockTitle(elem, lineno);
-      //children = [title, ...children];
       children.unshift(title);
     }
 
@@ -757,16 +756,16 @@ class Converter {
     ]);
     let children = [{ type: "Str", value: raw, loc, range, raw }];
     if (attrs.length > 0) {
-      children = [attrs, ...children];
+      children = attrs.concat(children);
     }
 
     const title = this.getBlockTitle(elem, lineno);
     if ("type" in title) {
-      children = [title, ...children];
+      children.unshift(title);
     }
     const obj = {
       type: "Image",
-      children: children,
+      children,
       loc,
       range,
       raw
